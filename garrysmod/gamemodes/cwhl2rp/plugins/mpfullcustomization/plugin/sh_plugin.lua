@@ -16,8 +16,8 @@ cityname = "C8"
 mpfname = "Metroplex Protection Force"
 mpfprefix = "MPF"
 
-otaname = "Overwatch Transhuman Authority"
-otaprefix = "OTA"
+otaname = "Metroplex Transhuman Authority"
+otaprefix = "MTA"
 
 -- Set divisions. You can add and subtract divisions as you need
 divisions = {}
