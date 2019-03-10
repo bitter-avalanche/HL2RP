@@ -7,13 +7,13 @@
 -- CONFIGURATION
 
 -- Do you wish to hide what MPF / OTA units are online to civilians?
-mpfhide = false
+mpfhide = true
 
 -- Set the abbreviation for which city you're in
-cityname = "C17"
+cityname = "C8"
 
 -- Set the MPF's and OTA's names here, along with their prefixes!
-mpfname = "Metropolice Force"
+mpfname = "Metroplex Protection Force"
 mpfprefix = "MPF"
 
 otaname = "Overwatch Transhuman Authority"
@@ -91,11 +91,11 @@ nranks["assassin"] = "ASN"
 nranks["AI"] = "DISPATCH"
 
 nmodels = {}
-nmodels["recruit"] = "models/dpfilms/metropolice/hdpolice.mdl"
+nmodels["recruit"] = "models/dpfilms/metropolice/hl2beta_police.mdl"
 nmodels["eow"] = "models/combine_super_soldier.mdl"
 nmodels["ows"] = "models/combine_super_soldier.mdl"
-nmodels["commander"] = "models/dpfilms/metropolice/police_bt.mdl"
-nmodels["sectorial"] = "models/dpfilms/metropolice/phoenix_police.mdl"
+nmodels["commander"] = "models/dpfilms/metropolice/arctic_police.mdl"
+nmodels["sectorial"] = "models/dpfilms/metropolice/rtb_police.mdl"
 nmodels["scanner"] = "models/combine_scanner.mdl"
 nmodels["synth"] = "models/shield_scanner.mdl"
 nmodels["cremator"] = "models/cremator.mdl"
