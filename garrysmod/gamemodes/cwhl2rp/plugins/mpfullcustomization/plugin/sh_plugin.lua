@@ -24,6 +24,7 @@ divisions = {}
 	divisions[1] = "UNION"
 	divisions[2] = "GRID"
 	divisions[3] = "HELIX"
+	divisions[4] = "JUDGE"
 
 -- Set ranks. You can add and subtract ranks as you need
 ranks = {}
