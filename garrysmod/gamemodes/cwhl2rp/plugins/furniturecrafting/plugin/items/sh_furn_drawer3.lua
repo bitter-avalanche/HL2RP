@@ -9,6 +9,7 @@ ITEM.category = "Furniture";
 ITEM.batch = 1;
 ITEM.useText = "Open";
 ITEM.description = "Tall drawers. I wouldn't put anything heavy in here as it looks like it might collapse out of misery alone.";
+ITEM.storageSpace = 6;
 
 ITEM:AddData("Inventory", nil);
 ITEM:AddData("Cash", 0);
