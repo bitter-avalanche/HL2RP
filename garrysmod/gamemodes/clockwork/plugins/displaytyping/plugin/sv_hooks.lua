@@ -1,7 +1,6 @@
 --[[
 	© CloudSixteen.com do not share, re-distribute or modify
 	without permission of its author (kurozael@gmail.com).
-
 	Clockwork was created by Conna Wiles (also known as kurozael.)
 	http://cloudsixteen.com/license/clockwork.html
 --]]
@@ -13,13 +12,12 @@ function PLUGIN:PlayerStartTypingDisplay(player, code)
 			if (!player.typingBeep) then
 				local rankName, rank = player:GetFactionRank();
 				local faction = Clockwork.faction:FindByID(player:GetFaction());
+				local soundName = rank and rank.startChatNoise or faction and faction.startChatNoise;
 
-				player.typingBeep = true;
-				
-				if (rank and rank.startChatNoise) then
-					player:EmitSound(rank.startChatNoise);
-				elseif (faction and faction.startChatNoise) then
-					player:EmitSound(faction.startChatNoise);
+				if (soundName) then
+					player.typingBeep = true;
+
+					player:EmitSound(soundName);
 				end;
 			end;
 		end;
