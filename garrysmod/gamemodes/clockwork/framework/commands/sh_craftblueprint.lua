@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CraftBlueprint");
 
-COMMAND.tip = "Craft an item.";
-COMMAND.text = "<string UniqueID>";
+COMMAND.tip = "CmdCraftBlueprint";
+COMMAND.text = "CmdCraftBlueprintDesc";
 COMMAND.arguments = 1;
 
 -- Called when the command has been run.

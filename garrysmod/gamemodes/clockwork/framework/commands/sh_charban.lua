@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharBan");
 
-COMMAND.tip = "Ban a character from being used.";
-COMMAND.text = "<string Name>";
+COMMAND.tip = "CmdCharBan";
+COMMAND.text = "CmdCharBanDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "a";
 COMMAND.arguments = 1;

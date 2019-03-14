@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("InvAction");
 
-COMMAND.tip = "Run an inventory action on an item.";
-COMMAND.text = "<string Action> <string UniqueID> [string ItemID]";
+COMMAND.tip = "CmdInvAction";
+COMMAND.text = "CmdInvActionDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_FALLENOVER);
 
 COMMAND.arguments = 2;

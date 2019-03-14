@@ -192,16 +192,24 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork.kernel:FormatCash(amount, singular, lowerName)
-	local formatSingular = Clockwork.option:GetKey("format_singular_cash");
-	local formatCash = Clockwork.option:GetKey("format_cash");
-	local cashName = Clockwork.option:GetKey("name_cash", lowerName);
-	local realAmount = tostring(mathRound(amount));
-	
-	if (singular) then
-		return self:Replace(self:Replace(formatSingular, "%n", cashName), "%a", realAmount);
+	local output = {};
+	local cashName = Clockwork.option:GetKey("name_cash");
+
+	if (SERVER) then
+		if (singular) then
+			output = {"CashAmountSingular", amount};
+		else
+			output = {"CashAmount", amount, lowerName and string.lower(cashName) or cashName};
+		end;
 	else
-		return self:Replace(self:Replace(formatCash, "%n", cashName), "%a", realAmount);
+		if (singular) then
+			output = L("CashAmountSingular", amount);
+		else
+			output = L("CashAmount", amount, lowerName and string.lower(cashName) or cashName);
+		end;
 	end;
+
+	return output;
 end;
 
 --[[ Define the default library class. --]]
@@ -1071,7 +1079,7 @@ if (SERVER) then
 		SCHEMA_GAMEMODE_INFO["name"] = schemaData["title"] or "Undefined";
 		SCHEMA_GAMEMODE_INFO["author"] = schemaData["author"] or "Undefined";
 		SCHEMA_GAMEMODE_INFO["description"] = schemaData["description"] or "Undefined";
-		SCHEMA_GAMEMODE_INFO["version"] = schemaData["version"] or "Undefined";
+		SCHEMA_GAMEMODE_INFO["version"] = schemaData["version"] and math.Round(schemaData["version"], 6) or "Undefined";
 		
 		return SCHEMA_GAMEMODE_INFO;
 	end;
@@ -1574,13 +1582,10 @@ if (SERVER) then
 	--[[
 		@codebase Shared
 		@details A function to do the entity take damage hook.
-		@param {Unknown} Missing description for arguments.
+		@param {Unknown} Missing description for ....
 		@returns {Unknown}
 	--]]
-	function Clockwork.kernel:DoEntityTakeDamageHook(arguments)
-		local entity = arguments[1];
-		local damageInfo = arguments[2];
-		
+	function Clockwork.kernel:DoEntityTakeDamageHook(entity, damageInfo)
 		if (!IsValid(entity)) then
 			return;
 		end;		
@@ -3340,7 +3345,7 @@ else
 				
 				if (IsValid(subMenu)) then
 					if (arguments.toolTip) then
-						subMenu:SetToolTip(arguments.toolTip);
+						subMenu:SetToolTip(T(arguments.toolTip));
 					end;
 				end;
 			else
@@ -3358,7 +3363,7 @@ else
 				local panel = menuPanel.Items[#menuPanel.Items];
 				
 				if (IsValid(panel) and arguments.toolTip) then
-					panel:SetToolTip(arguments.toolTip);
+					panel:SetToolTip(T(arguments.toolTip));
 				end;
 			end;
 		end, minimumWidth);
@@ -5191,10 +5196,16 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork.kernel:ValidateTableKeys(baseTable)
+	local invalidKeys = {};
+
 	for i = 1, #baseTable do
 		if (!baseTable[i]) then
-			tableRemove(baseTable, i);
+			tableInsert(invalidKeys, i);
 		end;
+	end;
+
+	for i = #invalidKeys, 1, -1 do
+		tableRemove(baseTable, invalidKeys[i]);
 	end;
 end;
 
@@ -5322,7 +5333,7 @@ function Clockwork.kernel:SetSharedVar(key, value, sharedTable)
 				end;
 				local success, err = pcall(_G["SetGlobal"..class], key, value);
 				if (!success) then
-					MsgC(Color(255, 100, 0, 255), "[Clockwork:GlobalSharedVars] Attempted to set SharedVar '"..key.."'' of type '"..class.."'' with value of type '"..type(value).."'.\n"..err.."\n");
+					MsgC(Color(255, 100, 0, 255), "[Clockwork:GlobalSharedVars] Attempted to set SharedVar '"..key.."' of type '"..class.."' with value of type '"..type(value).."'.\n"..err.."\n");
 				end;
 				return;
 			end;
@@ -5438,8 +5449,8 @@ function Clockwork.kernel:ParseData(text)
 		k = stringGsub(k, "[%(%)]", "");
 		
 		if (k != "") then
-			text = stringGsub(text, "%*%("..k.."%)%*", tostring(Clockwork.option:GetKey(k, true)));
-			text = stringGsub(text, "%*"..k.."%*", tostring(Clockwork.option:GetKey(k)));
+			text = stringGsub(text, "%*%("..k.."%)%*", tostring(Clockwork.option:Translate(k, true)));
+			text = stringGsub(text, "%*"..k.."%*", tostring(Clockwork.option:Translate(k)));
 		end;
 	end;
 	

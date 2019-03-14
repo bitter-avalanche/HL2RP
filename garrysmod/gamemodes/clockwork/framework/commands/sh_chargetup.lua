@@ -10,7 +10,7 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharGetUp");
 
-COMMAND.tip = "Get your character up from the floor.";
+COMMAND.tip = "CmdCharGetUp";
 COMMAND.flags = CMD_DEFAULT;
 
 -- Called when the command has been run.

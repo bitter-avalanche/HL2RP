@@ -8,8 +8,8 @@
 
 local COMMAND = Clockwork.command:New("Announce");
 
-COMMAND.tip = "Announce something to all players.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdAnnounce";
+COMMAND.text = "CmdAnnounceDesc";
 COMMAND.arguments = 1;
 COMMAND.access = "o";
 

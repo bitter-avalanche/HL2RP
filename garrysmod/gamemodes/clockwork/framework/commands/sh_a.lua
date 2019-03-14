@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("A");
 
-COMMAND.tip = "Send a private message to all staff.";
-COMMAND.text = "<string Msg>";
+COMMAND.tip = "CmdA";
+COMMAND.text = "CmdADesc";
 COMMAND.access = "o";
 COMMAND.arguments = 1;
 COMMAND.alias = {"AD", "OP"};

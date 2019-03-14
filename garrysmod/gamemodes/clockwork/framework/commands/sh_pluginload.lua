@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PluginLoad");
 
-COMMAND.tip = "Attempt to load a plugin.";
-COMMAND.text = "<string Name>";
+COMMAND.tip = "CmdPluginLoad";
+COMMAND.text = "CmdPluginLoadDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "s";
 COMMAND.arguments = 1;

@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyVoiceUnban");
 
-COMMAND.tip = "Ban a player from the server.";
-COMMAND.text = "<string Name|SteamID|IPAddress>";
+COMMAND.tip = "CmdPlyVoiceUnban";
+COMMAND.text = "CmdPlyVoiceUnbanDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "o";
 COMMAND.arguments = 1;

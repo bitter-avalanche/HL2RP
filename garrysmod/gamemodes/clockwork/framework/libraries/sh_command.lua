@@ -137,10 +137,6 @@ function Clockwork.command:Register(data, name)
 	self.stored[uniqueID].access = data.access or "b";
 	self.stored[uniqueID].arguments = data.arguments or 0;
 
-	if (CLIENT) then
-		self:AddHelp(self.stored[uniqueID]);
-	end;
-
 	return self.stored[uniqueID];
 end;
 
@@ -161,6 +157,21 @@ end;
 --]]
 function Clockwork.command:FindByAlias(identifier)
 	return self.stored[alias[string.lower(string.gsub(identifier, "%s", ""))]];
+end;
+
+--[[
+	@codebase Shared
+	@details Add a new alias for a command.
+	@param {String} The identifier of the command to alias.
+	@param {String} The name of the alias.
+--]]
+function Clockwork.command:AddAlias(identifier, name)
+	local uniqueID = string.lower(string.gsub(identifier, "%s", ""));
+	local lowerName = string.lower(string.gsub(name, "%s", ""));
+
+	if (self.stored[uniqueID]) then
+		alias[lowerName] = uniqueID;
+	end;
 end;
  
 --[[
@@ -286,16 +297,16 @@ if (SERVER) then
 												Clockwork.kernel:PrintLog(LOGTYPE_GENERIC, {"LogPlayerUsedCommand", player:Name(), commandPrefix..commandTable.name});
 											end;
 
+											Clockwork.plugin:Call("PostCommandUsed", player, commandTable, arguments);
+											
 											return value;
 										end;
-
-										Clockwork.plugin:Call("PostCommandUsed", player, commandTable, arguments);
 									end;
 								else
 									Clockwork.player:Notify(player, {"NoAccessToCommand", player:Name()});
 								end;
 							else
-								Clockwork.player:Notify(player, commandTable.name.." "..commandTable.text.."!");
+								Clockwork.player:Notify(player, commandTable.name.." "..L(player, commandTable.text).."!");
 							end;
 						end;
 					elseif (!Clockwork.player:GetDeathCode(player, true)) then
@@ -346,8 +357,9 @@ else
 					<div class="cwCodeText">
 						<i><lang>]]..text..[[</lang></i>
 					</div>
-					]]..commandTable.tip..[[
+					<lang>]]..commandTable.tip..[[</lang>
 				</div>
+				<br>
 			]], true, commandTable.name);
 		end;
 	end;

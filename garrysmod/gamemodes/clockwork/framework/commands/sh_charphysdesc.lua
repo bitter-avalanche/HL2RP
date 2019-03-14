@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharPhysDesc");
 
-COMMAND.tip = "Change your character's physical description.";
-COMMAND.text = "[string Text]";
+COMMAND.tip = "CmdCharPhysDesc";
+COMMAND.text = "CmdCharPhysDescDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 0;
 
@@ -29,7 +29,7 @@ function COMMAND:OnRun(player, arguments)
 		
 		player:SetCharacterData("PhysDesc", Clockwork.kernel:ModifyPhysDesc(text));
 	else
-		Clockwork.dermaRequest:RequestString(player, {"PhysDescChangeTitle"}, {"PhysDescChangeDesc"}, player:GetSharedVar("PhysDesc"), function(result)
+		Clockwork.dermaRequest:RequestString(player, {"PhysDescChangeTitle"}, {"PhysDescChangeDesc"}, Clockwork.player:GetPhysDesc(player), function(result)
 			player:RunClockworkCmd(self.name, result);
 		end)
 	end;

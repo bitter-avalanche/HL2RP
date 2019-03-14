@@ -8,8 +8,8 @@
 
 local COMMAND = Clockwork.command:New("RankPromote");
 
-COMMAND.tip = "Promote someone to the next rank up.";
-COMMAND.text = "<string Name> [boolean IsForced]";
+COMMAND.tip = "CmdRankPromote";
+COMMAND.text = "CmdRankPromoteDesc";
 COMMAND.arguments = 1;
 COMMAND.optionalArguments = 1;
 
@@ -34,7 +34,7 @@ function COMMAND:OnRun(player, arguments)
 				
 				Clockwork.player:SetFactionRank(target, Clockwork.faction:GetHigherRank(target:GetFaction(), rankTable));
 
-				Clockwork.player:NotifyAll({"PlayerForcePromoted", player:Name(), target:Name(), target:GetFactionRank()});
+				Clockwork.player:NotifyAll({"PlayerForcePromoted", player:Name(), target:Name(), (target:GetFactionRank())});
 			else
 				Clockwork.player:Notify(player, {"YouCannotPromotePlayer"});
 			end;
@@ -48,7 +48,7 @@ function COMMAND:OnRun(player, arguments)
 
 				Clockwork.player:SetFactionRank(target, Clockwork.faction:GetHigherRank(target:GetFaction(), rankTable));
 
-				Clockwork.player:NotifyAll({"PlayerPromotedPlayer", player:Name(), target:Name(), target:GetFactionRank()});
+				Clockwork.player:NotifyAll({"PlayerPromotedPlayer", player:Name(), target:Name(), (target:GetFactionRank())});
 			else
 				Clockwork.player:Notify(player, {"PromotePermsNeeded"});
 			end;

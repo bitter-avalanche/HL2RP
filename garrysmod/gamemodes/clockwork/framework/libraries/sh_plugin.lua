@@ -379,8 +379,9 @@ function Clockwork.plugin:Register(pluginTable)
 				</div>
 				<div class="cwContentText">
 					<div class="cwCodeText">]]..pluginTable:GetAuthor()..[[</div>
-					<lang>]]..pluginTable:GetDescription()..[[</lang>
+					<lang>]]..string.gsub(pluginTable:GetDescription(), "\\n", "<br>")..[[</lang>
 				</div>
+				<br>
 			]], true, pluginTable:GetAuthor());
 		end;
 	end;
@@ -483,6 +484,8 @@ function Clockwork.plugin:Include(directory, isSchema)
 
 		Schema:Register();
 	else
+		local originalPLUGIN = PLUGIN;
+
 		PLUGIN = self:New();
 		
 		if (SERVER) then
@@ -547,7 +550,7 @@ function Clockwork.plugin:Include(directory, isSchema)
 		end;
 		
 		PLUGIN:Register();
-		PLUGIN = nil;
+		PLUGIN = originalPLUGIN;
 	end;
 end;
 
@@ -604,11 +607,11 @@ end;
 	@codebase Shared
 	@details A function to run the plugin hooks.
 	@param {Unknown} Missing description for name.
-	@param {Unknown} Missing description for bGamemode.
+	@param {Unknown} Missing description for isGamemode.
 	@param {Unknown} Missing description for ....
 	@returns {Unknown}
 --]]
-function Clockwork.plugin:RunHooks(name, bGamemode, ...)
+function Clockwork.plugin:RunHooks(name, isGamemode, ...)
 	if (not self.sortedModules) then
 		self.sortedModules = self:SortList(modules);
 	end;
@@ -621,6 +624,7 @@ function Clockwork.plugin:RunHooks(name, bGamemode, ...)
 	
 	if (not cache) then
 		cache = {};
+		
 		for k, v in ipairs(self.sortedModules) do
 			if (modules[v.name] and v[name]) then
 				table.insert(cache, {v[name], v});
@@ -650,11 +654,11 @@ function Clockwork.plugin:RunHooks(name, bGamemode, ...)
 		end;
 	end;
 
-	if (bGamemode and Clockwork[name]) then
+	if (isGamemode and Clockwork[name]) then
 		local wasSuccess, value = pcall(Clockwork[name], Clockwork, ...);
 		
 		if (!wasSuccess) then
-			MsgC(Color(255, 100, 0, 255), "\n[Clockwork:Kernel]\nThe '"..name.."' clockwork hook has failed to run.\n"..value.."\n");
+			MsgC(Color(255, 100, 0, 255), "\n[Clockwork:Kernel]\nThe '"..name.."' Clockwork hook has failed to run.\n"..value.."\n");
 		elseif (value != nil) then
 			return value;
 		end;

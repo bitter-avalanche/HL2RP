@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("StorageTakeItem");
 
-COMMAND.tip = "Take an item from storage.";
-COMMAND.text = "<string uniqueID> <string ItemID>";
+COMMAND.tip = "CmdStorageTakeItem";
+COMMAND.text = "CmdStorageTakeItemDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 2;
 

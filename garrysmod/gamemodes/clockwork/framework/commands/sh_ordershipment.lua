@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("OrderShipment");
 
-COMMAND.tip = "Order an item shipment at your target position.";
-COMMAND.text = "<string UniqueID>";
+COMMAND.tip = "CmdOrderShipment";
+COMMAND.text = "CmdOrderShipmentDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_FALLENOVER);
 
 COMMAND.arguments = 1;

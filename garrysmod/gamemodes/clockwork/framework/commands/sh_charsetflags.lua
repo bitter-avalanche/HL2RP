@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharSetFlags");
 
-COMMAND.tip = "Set a character's flags.";
-COMMAND.text = "<string Name> <string Flag(s)>";
+COMMAND.tip = "CmdCharSetFlags";
+COMMAND.text = "CmdCharSetFlagsDesc";
 COMMAND.access = "s";
 COMMAND.arguments = 2;
 

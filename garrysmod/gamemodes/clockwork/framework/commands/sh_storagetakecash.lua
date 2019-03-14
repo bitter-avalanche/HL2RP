@@ -6,12 +6,10 @@
 	http://cloudsixteen.com/license/clockwork.html
 --]]
 
-local NAME_CASH = Clockwork.option:GetKey("name_cash");
+local COMMAND = Clockwork.command:New("StorageTakeCash");
 
-local COMMAND = Clockwork.command:New("StorageTake"..string.gsub(NAME_CASH, "%s", ""));
-
-COMMAND.tip = "Take some "..string.lower(NAME_CASH).." from storage.";
-COMMAND.text = "<number "..string.gsub(NAME_CASH, "%s", "")..">";
+COMMAND.tip = "CmdStorageTakeCash";
+COMMAND.text = "CmdStorageTakeCashDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 1;
 

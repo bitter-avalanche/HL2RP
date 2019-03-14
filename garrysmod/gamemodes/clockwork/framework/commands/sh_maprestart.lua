@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("MapRestart");
 
-COMMAND.tip = "Restart the current map.";
-COMMAND.text = "[number Delay]";
+COMMAND.tip = "CmdMapRestart";
+COMMAND.text = "CmdMapRestartDesc";
 COMMAND.access = "a";
 COMMAND.optionalArguments = 1;
 

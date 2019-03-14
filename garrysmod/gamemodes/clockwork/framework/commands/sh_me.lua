@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("Me");
 
-COMMAND.tip = "Speak in third person to others around you.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdMe";
+COMMAND.text = "CmdMeDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_DEATHCODE);
 
 COMMAND.arguments = 1;

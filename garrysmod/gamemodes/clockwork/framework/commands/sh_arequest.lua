@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("ARequest");
 
-COMMAND.tip = "Send a request to all online staff.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdARequest";
+COMMAND.text = "CmdARequestDesc";
 COMMAND.access = "o";
 COMMAND.arguments = 1;
 

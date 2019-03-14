@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyDemote");
 
-COMMAND.tip = "Demote a player from their user group.";
-COMMAND.text = "<string Name>";
+COMMAND.tip = "CmdPlyDemote";
+COMMAND.text = "CmdPlyDemoteDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "s";
 COMMAND.arguments = 1;

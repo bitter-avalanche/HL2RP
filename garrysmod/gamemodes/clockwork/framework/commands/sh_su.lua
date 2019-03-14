@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("Su");
 
-COMMAND.tip = "Send a private message to all superadmins.";
-COMMAND.text = "<string Msg>";
+COMMAND.tip = "CmdSu";
+COMMAND.text = "CmdSuDesc";
 COMMAND.access = "s";
 COMMAND.arguments = 1;
 

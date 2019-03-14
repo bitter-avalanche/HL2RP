@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharFallOver");
 
-COMMAND.tip = "Make your character fall to the floor.";
-COMMAND.text = "[number Seconds]";
+COMMAND.tip = "CmdCharFallOver";
+COMMAND.text = "CmdCharFallOverDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.optionalArguments = 1;
 COMMAND.alias = {"Fallover"};

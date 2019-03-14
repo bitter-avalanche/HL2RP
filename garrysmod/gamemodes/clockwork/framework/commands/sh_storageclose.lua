@@ -10,7 +10,7 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("StorageClose");
 
-COMMAND.tip = "Close the active storage.";
+COMMAND.tip = "CmdStorageClose";
 COMMAND.flags = CMD_DEFAULT;
 
 -- Called when the command has been run.

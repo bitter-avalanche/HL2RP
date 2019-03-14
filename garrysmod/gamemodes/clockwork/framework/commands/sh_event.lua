@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("Event");
 
-COMMAND.tip = "Send an event to all characters.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdEvent";
+COMMAND.text = "CmdEventDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "o";
 COMMAND.arguments = 1;

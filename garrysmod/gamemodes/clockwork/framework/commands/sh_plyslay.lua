@@ -8,8 +8,8 @@
 
 local COMMAND = Clockwork.command:New("PlySlay");
 
-COMMAND.tip = "Slay another player.";
-COMMAND.text = "<string Target> <bool isSilent>";
+COMMAND.tip = "CmdPlySlay";
+COMMAND.text = "CmdPlySlayDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_FALLENOVER);
 
 COMMAND.arguments = 1;

@@ -8,8 +8,8 @@
 
 local COMMAND = Clockwork.command:New("Translate");
 
-COMMAND.tip = "Translate given text to the specified language and print it in chat.";
-COMMAND.text = "<string Source> <string Language> <string Text>";
+COMMAND.tip = "CmdTranslate";
+COMMAND.text = "CmdTranslateDesc";
 COMMAND.arguments = 3;
 
 -- Called when the command has been run.

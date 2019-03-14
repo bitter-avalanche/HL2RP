@@ -8,8 +8,8 @@
 
 local COMMAND = Clockwork.command:New("PlyRespawnTP");
 
-COMMAND.tip = "Respawn a player and teleport them to your target location.";
-COMMAND.text = "<string Target> <bool isSilent>";
+COMMAND.tip = "CmdPlyRespawnTP";
+COMMAND.text = "CmdPlyRespawnTPDesc";
 COMMAND.arguments = 1;
 COMMAND.optionalArguments = 1;
 COMMAND.access = "o";

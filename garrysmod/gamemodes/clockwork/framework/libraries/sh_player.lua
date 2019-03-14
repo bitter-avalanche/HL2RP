@@ -2135,7 +2135,8 @@ function Clockwork.player:SetWhitelisted(player, faction, isWhitelisted)
 	else
 		for k, v in pairs(whitelisted) do
 			if (v == faction) then
-				whitelisted[k] = nil;
+				table.remove(whitelisted, k);
+				break;
 			end;
 		end;
 	end;
@@ -3343,7 +3344,7 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork.player:GetPhysDesc(player)
-	local physDesc = player:GetSharedVar("PhysDesc");
+	local physDesc = player:GetCharacterData("PhysDesc");
 	local team = player:Team();
 	
 	if (physDesc == "") then
@@ -4890,14 +4891,10 @@ end;
 function Clockwork.player:SetBasicSharedVars(player)
 	local gender = player:GetGender();
 	local faction = player:GetFaction();
+	local factionList = cwFaction:GetAll();
 	
-	player:SetSharedVar("Flags", player:GetFlags());
-	player:SetSharedVar("Model", self:GetDefaultModel(player));
-	player:SetSharedVar("Name", player:Name());
-	player:SetSharedVar("Key", player:GetCharacterKey());
-	
-	if (cwFaction:GetAll()[faction]) then
-		player:SetSharedVar("Faction", cwFaction:GetAll()[faction].index);
+	if (factionList[faction]) then
+		player:SetSharedVar("Faction", factionList[faction].index);
 	end;
 	
 	if (gender == GENDER_MALE) then
@@ -5522,8 +5519,8 @@ Clockwork.player.characterData = Clockwork.player.characterData or {};
 	@param {String} The name of the data type (can be pretty much anything.)
 	@param {Number} The type of the object (must be a type of NWTYPE_* enum).
 	@param {Mixed} The default value of the data type.
-	@param {Function} Alter the value that gets networked.
 	@param {Bool} Whether or not the data is networked to the player only (defaults to false.)
+	@param {Function} Alter the value that gets networked.
 --]]
 function Clockwork.player:AddCharacterData(name, nwType, default, playerOnly, callback)
 	Clockwork.player.characterData[name] = {

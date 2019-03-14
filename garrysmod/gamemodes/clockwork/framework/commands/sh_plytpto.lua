@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyTeleportTo");
 
-COMMAND.tip = "Teleport a player to another player.";
-COMMAND.text = "<string Target> <string Other> <bool isSilent>";
+COMMAND.tip = "CmdPlyTeleportTo";
+COMMAND.text = "CmdPlyTeleportToDesc";
 COMMAND.access = "o";
 COMMAND.arguments = 2;
 COMMAND.optionalArguments = 1;

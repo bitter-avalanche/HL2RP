@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyKick");
 
-COMMAND.tip = "Kick a player from the server.";
-COMMAND.text = "<string Name> <string Reason>";
+COMMAND.tip = "CmdPlyKick";
+COMMAND.text = "CmdPlyKickDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "o";
 COMMAND.arguments = 2;
