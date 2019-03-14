@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharGiveItem");
 
-COMMAND.tip = "Give an item to a character.";
-COMMAND.text = "<string Name> <string Item> [number Amount]";
+COMMAND.tip = "CmdCharGiveItem";
+COMMAND.text = "CmdCharGiveItemDesc";
 COMMAND.access = "s";
 COMMAND.arguments = 2;
 COMMAND.optionalArguments = 1;

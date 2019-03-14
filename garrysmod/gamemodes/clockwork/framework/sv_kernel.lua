@@ -68,12 +68,13 @@ local cwVoice = Clockwork.voice;
 local cwChatbox = Clockwork.chatBox;
 
 --[[ Downloads the content addon for clients. --]]
-resource.AddWorkshop("474315121");
+resource.AddWorkshop("1642469693");
 
 --[[ Do this internally, because it's one less step for schemas. --]]
 AddCSLuaFile(cwKernel:GetSchemaGamemodePath().."/cl_init.lua");
 
 --[[ Add any requires resource files from the server. --]]
+Clockwork.kernel:AddFile("materials/clockwork/unknown2.png");
 Clockwork.kernel:AddFile("materials/clockwork/decrease.png");
 Clockwork.kernel:AddFile("materials/clockwork/increase.png");
 Clockwork.kernel:AddDirectory("materials/clockwork/sliced/*.png");
@@ -95,7 +96,7 @@ if (system.IsLinux()) then
 	function file.Read(fileName, pathName)
 		local contents = ClockworkFileRead(fileName, pathName);
 		
-		if (contents and string.utf8sub(contents, -1) == "\n") then
+		if (contents and utf8.len(contents) and string.utf8sub(contents, -1) == "\n") then
 			contents = string.utf8sub(contents, 1, -2);
 		end;
 		
@@ -115,38 +116,30 @@ hook.Timings = hook.Timings or {};
 hook.Averages = hook.Averages or {};
 
 function hook.Call(name, gamemode, ...)
-	local arguments = {...};
-	
 	if (name == "EntityTakeDamage") then
-		if (cwKernel:DoEntityTakeDamageHook(arguments)) then
+		if (cwKernel:DoEntityTakeDamageHook(...)) then
 			return;
 		end;
 	elseif (name == "PlayerDisconnected") then
+		local arguments = {...};
+		
 		if (!IsValid(arguments[1])) then
 			return;
 		end;
 	end;
 	
-	local startTime = SysTime();
-		local bStatus, value = pcall(cwPlugin.RunHooks, cwPlugin, name, nil, unpack(arguments));
-	local timeTook = SysTime() - startTime;
+	local status, value = pcall(cwPlugin.RunHooks, cwPlugin, name, nil, ...);
 	
-	hook.Timings[name] = timeTook;
-
-	if (!bStatus) then
+	if (!status) then
 		if (!Clockwork.Unauthorized) then
 			MsgC(Color(255, 100, 0, 255), "\n[Clockwork:Kernel]\nThe '"..name.."' hook has failed to run.\n"..value.."\n");
 		end;
 	end;
 	
 	if (value == nil or name == THINK_NAME) then
-		local startTime = SysTime();
-			local bStatus, a, b, c = pcall(hook.ClockworkCall, name, gamemode or Clockwork, unpack(arguments));
-		local timeTook = SysTime() - startTime;
+		local status, a, b, c = pcall(hook.ClockworkCall, name, gamemode or Clockwork, ...);
 		
-		hook.Timings[name] = timeTook;
-		
-		if (!bStatus) then
+		if (!status) then
 			if (!Clockwork.Unauthorized) then
 				MsgC(Color(255, 100, 0, 255), "\n[Clockwork:Kernel]\nThe '"..name.."' hook failed to run.\n"..a.."\n");
 			end;
@@ -259,7 +252,7 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork:PlayerThink(player, curTime, infoTable)
-	local bPlayerBreathSnd = false;
+	local playBreathSound = false;
 	local storageTable = player:GetStorageTable();
 	
 	if (!cwConfig:Get("cash_enabled"):Get()) then
@@ -336,7 +329,9 @@ function Clockwork:PlayerThink(player, curTime, infoTable)
 	end;
 	
 	--[[ Update whether the weapon has fired, or is being raised. --]]
-	player:UpdateWeaponFired(); player:UpdateWeaponRaised();
+	player:UpdateWeaponFired();
+	player:UpdateWeaponRaised();
+	
 	player:SetSharedVar("IsRunMode", infoTable.isRunning);
 	
 	player:SetCrouchedWalkSpeed(math.max(infoTable.crouchedSpeed, 0), true);
@@ -452,13 +447,11 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork:ClockworkInitialized()
-	local cashName = cwOption:GetKey("name_cash");
-	
 	if (!cwConfig:Get("cash_enabled"):Get()) then
-		cwCommand:SetHidden("Give"..string.gsub(cashName, "%s", ""), true);
-		cwCommand:SetHidden("Drop"..string.gsub(cashName, "%s", ""), true);
-		cwCommand:SetHidden("StorageTake"..string.gsub(cashName, "%s", ""), true);
-		cwCommand:SetHidden("StorageGive"..string.gsub(cashName, "%s", ""), true);
+		cwCommand:SetHidden("GiveCash", true);
+		cwCommand:SetHidden("DropCash", true);
+		cwCommand:SetHidden("StorageTakeCash", true);
+		cwCommand:SetHidden("StorageGiveCash", true);
 		
 		cwConfig:Get("scale_prop_cost"):Set(0, nil, true, true);
 		cwConfig:Get("door_cost"):Set(0, nil, true, true);
@@ -1959,7 +1952,9 @@ function Clockwork:PlayerDataStreamInfoSent(player)
 					end;
 					
 					for k, v in pairs(player.cwCharacterList) do
-						local shouldDelete = cwPlugin:Call("PlayerAdjustCharacterTable", player, v);
+						cwPlugin:Call("PlayerAdjustCharacterTable", player, v);
+
+						local shouldDelete = cwPlugin:Call("ShouldDeleteCharacter", player, v);
 						
 						if (!shouldDelete) then
 							cwPly:CharacterScreenAdd(player, v);
@@ -2027,6 +2022,8 @@ function Clockwork:PlayerRestoreCharacterData(player, data)
 	if (!data["Traits"]) then
 		data["Traits"] = {};
 	end;
+	
+	cwPly:RestoreCharacterData(player, data);
 end;
 
 --[[
@@ -2190,7 +2187,7 @@ function Clockwork:Tick()
 	
 	if (!self.NextSaveData or sysTime >= self.NextSaveData) then
 		cwPlugin:Call("PreSaveData");
-			cwPlugin:Call("SaveData");
+		cwPlugin:Call("SaveData");
 		cwPlugin:Call("PostSaveData");
 		
 		self.NextSaveData = sysTime + cwConfig:Get("save_data_interval"):Get();
@@ -2219,9 +2216,7 @@ function Clockwork:Tick()
 			end;
 			
 			if (curTime >= v.cwNextThink) then
-				cwPly:CallThinkHook(
-					v, (curTime >= v.cwNextSetSharedVars), curTime
-				);
+				cwPly:CallThinkHook(v, (curTime >= v.cwNextSetSharedVars), curTime);
 			end;
 		end;
 	end;
@@ -2306,11 +2301,6 @@ function Clockwork:PlayerSetSharedVars(player, curTime)
 	
 	player:HandleAttributeProgress(curTime);
 	player:HandleAttributeBoosts(curTime);
-	
-	player:SetSharedVar("Flags", player:GetFlags());
-	player:SetSharedVar("Model", player:GetDefaultModel());
-	player:SetSharedVar("Name", player:Name());
-	player:SetSharedVar("Cash", player:GetCash());
 	
 	local clothesItem = player:IsWearingClothes();
 	
@@ -2435,6 +2425,8 @@ function Clockwork:PlayerRestoreData(player, data)
 		data["ServerWhitelist"] = data["serverwhitelist"];
 		data["serverwhitelist"] = nil;
 	end;
+	
+	cwPly:RestoreData(player, data);
 end;
 
 --[[
@@ -3795,11 +3787,11 @@ function Clockwork:EntityHandleMenuOption(player, entity, option, arguments)
 		});
 	elseif (class == "cw_cash" and arguments == "cwCashTake") then
 		if (cwEntity:BelongsToAnotherCharacter(player, entity)) then
-			cwPly:Notify(player, {"DroppedCashOtherChar", cwOption:GetKey("name_cash", true)});
+			cwPly:Notify(player, {"DroppedCashOtherChar", L(player, "Cash")});
 			return;
 		end;
 		
-		cwPly:GiveCash(player, entity.cwAmount, cwOption:GetKey("name_cash"));
+		cwPly:GiveCash(player, entity.cwAmount, L(player, "Cash"));
 		player:EmitSound("physics/body/body_medium_impact_soft"..math.random(1, 7)..".wav");
 		player:FakePickup(entity);
 		
@@ -3858,7 +3850,7 @@ function Clockwork:PlayerSpawnedProp(player, model, entity)
 			entity:SetOwnerKey(player:GetCharacterKey());
 			
 			if (IsValid(entity)) then
-				cwKernel:PrintLog(LOGTYPE_URGENT, {"LogPlayerSpawnModel", player:Name(), tostring(model)});
+				cwKernel:PrintLog(LOGTYPE_URGENT, {"LogPlayerSpawnedModel", player:Name(), tostring(model)});
 				
 				if (cwConfig:Get("prop_kill_protection"):Get()) then
 					entity.cwDamageImmunity = CurTime() + 60;
@@ -4384,6 +4376,19 @@ function Clockwork:PlayerUseUnknownItemFunction(player, itemTable, itemFunction)
 
 --[[
 	@codebase Server
+	@details Called when deciding whether to automatically delete a character.
+	@param The entity of the player who created the character.
+	@param The character which is being considered for deletion.
+	@returns A boolean indicating whether or not the character should be deleted.
+--]]
+function Clockwork:ShouldDeleteCharacter(player, character)
+	if (!self.faction.stored[character.faction]) then
+		return true;
+	end;
+end;
+
+--[[
+	@codebase Server
 	@details Called when a player's character table should be adjusted.
 	@param {Unknown} Missing description for player.
 	@param {Unknown} Missing description for character.
@@ -4395,8 +4400,6 @@ function Clockwork:PlayerAdjustCharacterTable(player, character)
 		and !cwPly:IsWhitelisted(player, character.faction)) then
 			character.data["CharBanned"] = true;
 		end;
-	else
-		return true;
 	end;
 end;
 
@@ -4437,10 +4440,88 @@ function Clockwork:PlayerAdjustDeathInfo(player, info) end;
 	@returns {Unknown}
 --]]
 function Clockwork:ChatBoxAdjustInfo(info)
+	if (table.HasValue(Clockwork.voices.chatClasses, info.class)) then
+		if (IsValid(info.speaker) and info.speaker:HasInitialized()) then
+			info.text = string.upper(string.sub(info.text, 1, 1))..string.sub(info.text, 2);
+			
+			local voiceGroups = Clockwork.voices:GetAll();
+			local voices;
+
+			for k, v in pairs(voiceGroups) do
+				if (v.IsPlayerMember(info.speaker)) then
+					voices = v.voices;
+
+					break;
+				end;
+			end;
+			
+			for k, v in pairs(voices or {}) do
+				if (string.lower(info.text) == string.lower(v.command)) then
+					local voice = info.voice or {};
+
+					voice.global = voice.global or false;
+					voice.volume = voice.volume or v.volume or 80;
+					voice.sound = voice.sound or v.sound;
+					voice.pitch = voice.pitch or v.pitch;
+					
+					if (v.gender) then
+						if (v.female and info.speaker:QueryCharacter("Gender") == GENDER_FEMALE) then
+							voice.sound = string.Replace(voice.sound, "/male", "/female");
+						end;
+					end;
+					
+					if (info.class == "whisper") then
+						voice.volume = voice.volume * 0.75;
+					elseif (info.class == "yell") then
+						voice.volume = voice.volume * 1.25;
+					end;
+					
+					info.voice = voice;
+
+					if (v.phrase == nil or v.phrase == "") then
+						info.visible = false;
+					else
+						info.text = v.phrase;
+					end;
+
+					break;
+				end;
+			end;
+		end;
+	end;
+
+	info.textTransformer = info.textTransformer or function(text)
+		return text;
+	end;
+
+	info.text = info.textTransformer(info.text);
+	
 	if (info.class == "ic") then
 		cwKernel:PrintLog(LOGTYPE_GENERIC, {"LogPlayerSays", info.speaker:Name(), info.text});
 	elseif (info.class == "looc") then
 		cwKernel:PrintLog(LOGTYPE_GENERIC, {"LogPlayerSaysLOOC", info.speaker:Name(), info.text});
+	end;
+end;
+
+--[[
+	@codebase Shared
+	@details Called when a chat box message has been added.
+	@param {Unknown} Missing description for info.
+	@returns {Unknown}
+--]]
+function Clockwork:ChatBoxMessageAdded(info)
+	if (info.voice and info.voice.sound) then
+		if (IsValid(info.speaker) and info.speaker:HasInitialized()) then
+			info.speaker:EmitSound(info.voice.sound, info.voice.volume, info.voice.pitch);
+		end;
+		
+		if (info.voice.global) then
+			for k, v in pairs(info.listeners) do
+				if (v != info.speaker) then
+					Clockwork.player:PlaySound(v, info.voice.sound);
+				end;
+			end;
+		end;
 	end;
 end;
 
@@ -4745,7 +4826,7 @@ end
 	@returns {Unknown}
 --]]
 function Clockwork:ShutDown()
-	self.ShuttingDown = true;
+	Clockwork.ShuttingDown = true;
 end;
 
 --[[
@@ -5708,4 +5789,4 @@ concommand.Add("cwDeathCode", function(player, command, arguments)
 	end;
 end);
 
-CloudAuthX.External("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");
+CloudAuthX.External("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");

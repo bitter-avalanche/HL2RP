@@ -6,12 +6,10 @@
 	http://cloudsixteen.com/license/clockwork.html
 --]]
 
-local NAME_CASH = Clockwork.option:GetKey("name_cash");
+local COMMAND = Clockwork.command:New("DropCash");
 
-local COMMAND = Clockwork.command:New("Drop"..string.gsub(NAME_CASH, "%s", ""));
-
-COMMAND.tip = "Drop "..string.lower(NAME_CASH).." at your target position.";
-COMMAND.text = "<number "..string.gsub(NAME_CASH, "%s", "")..">";
+COMMAND.tip = "CmdDropCash";
+COMMAND.text = "CmdDropCashDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 1;
 
@@ -25,7 +23,7 @@ function COMMAND:OnRun(player, arguments)
 		
 		if (player:GetShootPos():Distance(trace.HitPos) <= 192) then
 			if (Clockwork.player:CanAfford(player, cash)) then
-				Clockwork.player:GiveCash(player, -cash, {"CashDroppingCash", Clockwork.option:GetKey("name_cash")});
+				Clockwork.player:GiveCash(player, -cash, {"CashDroppingCash", {"Cash"}});
 				
 				local entity = Clockwork.entity:CreateCash(player, cash, trace.HitPos);
 				
@@ -38,7 +36,7 @@ function COMMAND:OnRun(player, arguments)
 				player:NotifyMissingCash(amount);
 			end;
 		else
-			Clockwork.player:Notify(player, {"CannotDropNameFar", string.lower(NAME_CASH)});
+			Clockwork.player:Notify(player, {"CannotDropNameFar", {"Cash"}});
 		end;
 	else
 		Clockwork.player:Notify(player, {"NotValidAmount"});

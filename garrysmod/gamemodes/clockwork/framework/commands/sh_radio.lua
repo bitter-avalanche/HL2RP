@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("Radio");
 
-COMMAND.tip = "Send a radio message out to other characters.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdRadio";
+COMMAND.text = "CmdRadioDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_DEATHCODE, CMD_FALLENOVER);
 
 COMMAND.arguments = 1;

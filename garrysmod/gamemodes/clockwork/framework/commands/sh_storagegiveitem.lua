@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("StorageGiveItem");
 
-COMMAND.tip = "Give an item to storage.";
-COMMAND.text = "<string UniqueID> <string ItemID>";
+COMMAND.tip = "CmdStorageGiveItem";
+COMMAND.text = "CmdStorageGiveItemDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 2;
 

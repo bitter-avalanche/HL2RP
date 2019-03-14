@@ -77,6 +77,13 @@ end;
 
 --[[
 	@codebase Shared
+	@details Called when checking if an item can be crafted.
+	@param {Entity} Player crafting the blueprint.
+--]]
+function CLASS_TABLE:CanCraft(player) end;
+
+--[[
+	@codebase Shared
 	@details Called when crafting is unsuccessful.
 	@param {Entity} Player crafting the blueprint.
 --]]
@@ -172,7 +179,7 @@ end;
 	@param {Table} Blueprint being crafted.
 --]]
 function Clockwork.crafting:CanCraft(player, blueprintTable)
-	if (!Clockwork.kernel:HasObjectAccess(Clockwork.Client, blueprintTable)) then
+	if (!Clockwork.kernel:HasObjectAccess(player, blueprintTable)) then
 		return false, {"CraftErrorNotAllowed"};
 	end;
 	
@@ -250,6 +257,14 @@ function Clockwork.crafting:CanCraft(player, blueprintTable)
 	
 	if (!player:CanHoldSpace(itemsSpace)) then
 		return false, {"YourInventoryFull"};
+	end;
+	
+	if (blueprintTable.CanCraft) then
+		local canCraft = blueprintTable:CanCraft(player);
+
+		if (isbool(canCraft)) then
+			return canCraft;
+		end;
 	end;
 	
 	return true, "";
@@ -349,11 +364,18 @@ function Clockwork.crafting:CheckTakeItems(player, item, amount)
 	if (player and item and amount) then
 		if (amount > 1) then
 			local itemsToTake = {};
-			
-			for i = 1, amount do
-				itemsToTake[#itemsToTake + 1] = player:FindItemByID(item);
+			local itemsInInventoryWithSameID = Clockwork.inventory:GetItemsByID(player:GetInventory(), item);
+			local amountAddedInItemsToTake = 1;
+
+			for k, v in pairs(itemsInInventoryWithSameID) do
+				if (amountAddedInItemsToTake <= amount) then
+					itemsToTake[#itemsToTake + 1] = v;
+					amountAddedInItemsToTake = amountAddedInItemsToTake + 1;
+				else
+					break;
+				end;
 			end;
-			
+
 			player:TakeItems(itemsToTake);
 		else
 			player:TakeItem(player:FindItemByID(item));

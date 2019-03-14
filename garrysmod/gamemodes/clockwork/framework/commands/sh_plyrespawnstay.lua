@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyRespawnStay");
 
-COMMAND.tip = "Respawn a player at their position of death.";
-COMMAND.text = "<string Target>";
+COMMAND.tip = "CmdPlyRespawnStay";
+COMMAND.text = "CmdPlyRespawnStayDesc";
 COMMAND.arguments = 1;
 COMMAND.access = "o";
 COMMAND.alias = {"PlyRStay"};

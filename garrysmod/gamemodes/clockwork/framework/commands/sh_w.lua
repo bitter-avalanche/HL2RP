@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("W");
 
-COMMAND.tip = "Whisper to characters near you.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdW";
+COMMAND.text = "CmdWDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_DEATHCODE);
 
 COMMAND.arguments = 1;

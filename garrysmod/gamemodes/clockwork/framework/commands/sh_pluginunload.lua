@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PluginUnload");
 
-COMMAND.tip = "Attempt to unload a plugin.";
-COMMAND.text = "<string Name>";
+COMMAND.tip = "CmdPluginUnload";
+COMMAND.text = "CmdPluginUnloadDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "s";
 COMMAND.arguments = 1;

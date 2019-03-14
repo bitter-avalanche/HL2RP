@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyUnban");
 
-COMMAND.tip = "Unban a Steam ID from the server.";
-COMMAND.text = "<string SteamID|IPAddress>";
+COMMAND.tip = "CmdPlyUnban";
+COMMAND.text = "CmdPlyUnbanDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "o";
 COMMAND.arguments = 1;

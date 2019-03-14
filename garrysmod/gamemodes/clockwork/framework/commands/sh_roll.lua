@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("Roll");
 
-COMMAND.tip = "Roll a number between 0 and the specified number.";
-COMMAND.text = "[number Range]";
+COMMAND.tip = "CmdRoll";
+COMMAND.text = "CmdRollDesc";
 
 -- Called when the command has been run.
 function COMMAND:OnRun(player, arguments)

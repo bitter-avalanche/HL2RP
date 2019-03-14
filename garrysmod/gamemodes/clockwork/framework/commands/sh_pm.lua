@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PM");
 
-COMMAND.tip = "Send a private message to a player.";
-COMMAND.text = "<string Name> <string Text>";
+COMMAND.tip = "CmdPM";
+COMMAND.text = "CmdPMDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 2;
 

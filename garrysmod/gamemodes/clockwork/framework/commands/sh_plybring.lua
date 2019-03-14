@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyBring");
 
-COMMAND.tip = "Bring a player to your crosshair position.";
-COMMAND.text = "<string Target> <bool isSilent>";
+COMMAND.tip = "CmdPlyBring";
+COMMAND.text = "CmdPlyBringDesc";
 COMMAND.arguments = 1;
 COMMAND.optionalArguments = 1;
 COMMAND.access = "o";

@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyBan");
 
-COMMAND.tip = "Ban a player from the server.";
-COMMAND.text = "<string Name|SteamID|IPAddress> <number Minutes> [string Reason]";
+COMMAND.tip = "CmdPlyBan";
+COMMAND.text = "CmdPlyBanDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "o";
 COMMAND.arguments = 2;

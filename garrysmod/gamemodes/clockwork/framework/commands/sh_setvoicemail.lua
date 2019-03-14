@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("SetVoicemail");
 
-COMMAND.tip = "Set your personal message voicemail.";
-COMMAND.text = "[string Text]";
+COMMAND.tip = "CmdSetVoicemail";
+COMMAND.text = "CmdSetVoicemailDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "o";
 COMMAND.arguments = 1;

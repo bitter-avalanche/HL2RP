@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("MapChange");
 
-COMMAND.tip = "Change the current map.";
-COMMAND.text = "<string Map> [number Delay]";
+COMMAND.tip = "CmdMapChange";
+COMMAND.text = "CmdMapChangeDesc";
 COMMAND.access = "a";
 COMMAND.arguments = 1;
 COMMAND.optionalArguments = 1;

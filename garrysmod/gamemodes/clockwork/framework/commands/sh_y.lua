@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("Y");
 
-COMMAND.tip = "Yell to characters near you.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdY";
+COMMAND.text = "CmdYDesc";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_DEATHCODE);
 
 COMMAND.arguments = 1;

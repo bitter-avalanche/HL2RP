@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharTransfer");
 
-COMMAND.tip = "Transfer a character to a faction.";
-COMMAND.text = "<string Name> <string Faction> [string Data]";
+COMMAND.tip = "CmdCharTransfer";
+COMMAND.text = "CmdCharTransferDesc";
 COMMAND.access = "o";
 COMMAND.arguments = 2;
 COMMAND.optionalArguments = 1;

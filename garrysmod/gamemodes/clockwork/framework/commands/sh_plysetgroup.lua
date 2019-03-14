@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlySetGroup");
 
-COMMAND.tip = "Set a player's user group.";
-COMMAND.text = "<string Name> <string UserGroup>";
+COMMAND.tip = "CmdPlySetGroup";
+COMMAND.text = "CmdPlySetGroupDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.access = "s";
 COMMAND.arguments = 2;

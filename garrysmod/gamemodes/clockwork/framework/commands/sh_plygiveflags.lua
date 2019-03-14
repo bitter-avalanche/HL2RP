@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("PlyGiveFlags");
 
-COMMAND.tip = "Give flags to a player.";
-COMMAND.text = "<string Name> <string Flag(s)>";
+COMMAND.tip = "CmdPlyGiveFlags";
+COMMAND.text = "CmdPlyGiveFlagsDesc";
 COMMAND.access = "s";
 COMMAND.arguments = 2;
 

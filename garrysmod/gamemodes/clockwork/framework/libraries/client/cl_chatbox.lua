@@ -670,6 +670,10 @@ end;
 function Clockwork.chatBox:WrappedText(newLine, message, color, text, OnHover)
 	local chatBoxTextFont = Clockwork.option:GetFont("chat_box_text");
 	local width, height = Clockwork.kernel:GetTextSize(chatBoxTextFont, text);
+	
+	width = width * (message.multiplier or 1);
+	height = height * (message.multiplier or 1);
+
 	local maximumWidth = ScrW() * 0.6;
 	
 	if (width > maximumWidth) then
@@ -679,7 +683,7 @@ function Clockwork.chatBox:WrappedText(newLine, message, color, text, OnHover)
 		
 		for i = 0, #text do
 			local currentCharacter = string.utf8sub(text, i, i);
-			local currentSingleWidth = Clockwork.kernel:GetTextSize(chatBoxTextFont, currentCharacter);
+			local currentSingleWidth = Clockwork.kernel:GetTextSize(chatBoxTextFont, currentCharacter) * (message.multiplier or 1);
 			
 			if ((currentWidth + currentSingleWidth) >= maximumWidth) then
 				secondText = string.utf8sub(text, i);
@@ -889,7 +893,7 @@ function Clockwork.chatBox:Paint()
 					local totalText = prefix..v.name;
 					
 					if (isSingleCommand) then
-						totalText = totalText.." "..v.text;
+						totalText = totalText.." "..L(v.text);
 					end;
 					
 					local tWidth, tHeight = Clockwork.kernel:GetCachedTextSize(chatBoxSyntaxFont, totalText);
@@ -903,11 +907,11 @@ function Clockwork.chatBox:Paint()
 					if (isSingleCommand) then
 						local pWidth = Clockwork.kernel:GetCachedTextSize(chatBoxSyntaxFont, prefix..v.name);
 						
-						if (v.tip and v.tip != "") then
-							Clockwork.kernel:DrawSimpleText(v.tip, oX, oY - tHeight - 8, colorWhite);
+						if (v.tip and L(v.tip) != "") then
+							Clockwork.kernel:DrawSimpleText(L(v.tip), oX, oY - tHeight - 8, colorWhite);
 						end;
 						
-						Clockwork.kernel:DrawSimpleText(" "..v.text, oX + pWidth, oY, colorWhite);
+						Clockwork.kernel:DrawSimpleText(" "..L(v.text), oX + pWidth, oY, colorWhite);
 					end;
 					
 					if (k < #commands) then oY = oY - tHeight; end;

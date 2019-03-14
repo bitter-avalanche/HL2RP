@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("It");
 
-COMMAND.tip = "Describe a local action or event.";
-COMMAND.text = "<string Text>";
+COMMAND.tip = "CmdIt";
+COMMAND.text = "CmdItDesc";
 COMMAND.flags = CMD_DEFAULT;
 COMMAND.arguments = 1;
 

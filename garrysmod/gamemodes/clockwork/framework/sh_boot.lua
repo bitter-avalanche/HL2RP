@@ -28,8 +28,8 @@ end;
 
 Clockwork.ClockworkFolder = Clockwork.ClockworkFolder or GM.Folder;
 Clockwork.SchemaFolder = Clockwork.SchemaFolder or GM.Folder;
-Clockwork.KernelVersion = "0.97";
-Clockwork.KernelBuild = "alpha"
+Clockwork.KernelVersion = "0.99";
+Clockwork.KernelBuild = "beta"
 Clockwork.DeveloperVersion = true;
 Clockwork.Website = "http://kurozael.com";
 Clockwork.Author = "kurozael";
@@ -37,9 +37,9 @@ Clockwork.Email = "kurozael@gmail.com";
 Clockwork.Name = "Clockwork";
 
 --[[ Check if we are using the right CloudAuthX version. --]]
-if (SERVER and CloudAuthX.GetVersion() < 12) then
+if (SERVER and CloudAuthX.GetVersion() < 21) then
 	for i = 1, 3 do
-		Error("[CloudAuthX] Clockwork requires an updated CloudAuthX .dll or .so!\n");
+		Error("[CloudAuthX] This version of Clockwork requires CloudAuthX 16!\n Make sure you have installed the binary files from the Store!\n");
 	end;
 end;
 
@@ -103,9 +103,6 @@ Clockwork.kernel:IncludeDirectory("system/", true);
 Clockwork.kernel:IncludeDirectory("items/", true);
 Clockwork.kernel:IncludeDirectory("derma/", true);
 
---[[ The following code is loaded by CloudAuthX. --]]
-if (SERVER) then include("sv_cloudax.lua"); end;
-
 --[[ The following code is loaded over-the-Cloud. --]]
 if (SERVER and Clockwork.LoadPreSchemaExternals) then
 	Clockwork:LoadPreSchemaExternals();
@@ -131,6 +128,11 @@ end;
 Clockwork.kernel:IncludeDirectory("commands/", true);
 
 Clockwork.player:AddCharacterData("PhysDesc", NWTYPE_STRING, "");
+Clockwork.player:AddCharacterData("Model", NWTYPE_STRING, "");
+Clockwork.player:AddCharacterData("Flags", NWTYPE_STRING, "");
+Clockwork.player:AddCharacterData("Name", NWTYPE_STRING, "");
+Clockwork.player:AddCharacterData("Cash", NWTYPE_NUMBER, 0);
+Clockwork.player:AddCharacterData("Key", NWTYPE_NUMBER, 0);
 
 -- Called when the Clockwork shared variables are added.
 function Clockwork:ClockworkAddSharedVars(globalVars, playerVars)
@@ -148,13 +150,11 @@ function Clockwork:ClockworkAddSharedVars(globalVars, playerVars)
 	playerVars:Number("MaxAP");
 	playerVars:Number("IsDrunk", true);
 	playerVars:Number("Wages", true);
-	playerVars:Number("Cash", true);
 	playerVars:Number("ActDuration");
 	playerVars:Number("ForceAnim");
 	playerVars:Number("IsRagdoll");
 	playerVars:Number("Faction");
 	playerVars:Number("Gender");
-	playerVars:Number("Key");
 	playerVars:Bool("TargetKnows", true);
 	playerVars:Bool("FallenOver", true);
 	playerVars:Bool("CharBanned", true);
@@ -163,10 +163,7 @@ function Clockwork:ClockworkAddSharedVars(globalVars, playerVars)
 	playerVars:Bool("IsJogMode");
 	playerVars:Bool("IsRunMode");
 	playerVars:String("Clothes", true);
-	playerVars:String("Model", true);
 	playerVars:String("ActName");
-	playerVars:String("Flags");
-	playerVars:String("Name");
 	playerVars:String("Icon");
 	playerVars:Entity("Ragdoll");
 	playerVars:Float("StartActTime");

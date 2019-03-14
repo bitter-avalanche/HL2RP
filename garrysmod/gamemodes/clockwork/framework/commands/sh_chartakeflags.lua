@@ -10,8 +10,8 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("CharTakeFlags");
 
-COMMAND.tip = "Take flags from a character.";
-COMMAND.text = "<string Name> <string Flag(s)>";
+COMMAND.tip = "CmdCharTakeFlags";
+COMMAND.text = "CmdCharTakeFlagsDesc";
 COMMAND.access = "s";
 COMMAND.arguments = 2;
 

@@ -134,7 +134,7 @@ function THEME:Initialize()
 	Clockwork.option:SetKey("info_text_orange_icon", "icon16/error.png");
 	Clockwork.option:SetKey("info_text_blue_icon", "icon16/information.png");
 
-	Clockwork.option:SetKey("gradient", nil);
+	Clockwork.option:SetKey("gradient", "gui/gradient_up");
 	
 	Clockwork.option:SetColor("columnsheet_shadow_normal", Color(0, 0, 0, 255));
 	Clockwork.option:SetColor("columnsheet_text_normal", Color(255, 255, 255, 255));
@@ -146,7 +146,7 @@ function THEME:Initialize()
 	
 	Clockwork.option:SetColor("scoreboard_name", Color(0, 0, 0, 255));
 	Clockwork.option:SetColor("scoreboard_desc", Color(0, 0, 0, 255));
-	Clockwork.option:SetColor("scoreboard_item_background", Color(255, 255, 255, 50));
+	Clockwork.option:SetColor("scoreboard_item_background", Color(255, 255, 255, 255));
 	
 	Clockwork.option:SetColor("positive_hint", Color(100, 175, 100, 255));
 	Clockwork.option:SetColor("negative_hint", Color(175, 100, 100, 255));

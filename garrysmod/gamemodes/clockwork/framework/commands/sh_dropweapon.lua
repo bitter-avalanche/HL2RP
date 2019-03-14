@@ -10,7 +10,7 @@ local Clockwork = Clockwork;
 
 local COMMAND = Clockwork.command:New("DropWeapon");
 
-COMMAND.tip = "Drop your weapon at your target position.";
+COMMAND.tip = "CmdDropWeapon";
 COMMAND.flags = bit.bor(CMD_DEFAULT, CMD_FALLENOVER);
 
 -- Called when the command has been run.
