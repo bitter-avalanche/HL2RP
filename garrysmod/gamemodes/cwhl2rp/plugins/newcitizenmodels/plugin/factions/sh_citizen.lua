@@ -3,12 +3,10 @@
 	without permission of its author (kurozael@gmail.com).
 --]]
 
-local FACTION = Clockwork.faction:New("Civil Workers' Union");
+local FACTION = Clockwork.faction:New("Citizen");
 
 FACTION.useFullName = true;
--- FACTION.material = "hl2rp2/factions/citizen"; Uncommented until there's a proper faction material present.
-
--- Calls models for character creation. Used sparingly since it's preferable to transfer.
+FACTION.material = "hl2rp2/factions/citizen";
 
 FACTION.models = {
 	female = {"models/tnb/citizens/female_01.mdl",
@@ -61,4 +59,4 @@ function FACTION:OnTransferred(player, faction, name)
 	end;
 end;
 
-FACTION_CWU = FACTION:Register();
+FACTION_CITIZEN = FACTION:Register();
