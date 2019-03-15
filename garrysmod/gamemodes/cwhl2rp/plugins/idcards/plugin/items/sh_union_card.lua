@@ -13,7 +13,7 @@ end;
 if (SERVER) then
 	function ITEM:CanMakeOwner(player)
 		return (Clockwork.player:GetFactionTable(player).giveCard == "cid_card" and player:GetCharacterData("LoyaltyPoints", 0) >= 20)
-		or player:GetFaction() == FACTION_PROSELYTE or player:GetFaction() == FACTION_BIOTIC;
+		or player:GetFaction() == FACTION_UUSCI or player:GetFaction() == FACTION_BIOTIC;
 	end;
 end;
 
