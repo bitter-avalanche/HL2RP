@@ -46,6 +46,7 @@ Clockwork.quiz:AddQuestion("QuizOption3", 1, "QuizAnswerYes", "QuizAnswerNo");
 Clockwork.quiz:AddQuestion("QuizOption4", 1, "QuizAnswerYes", "QuizAnswerNo");
 Clockwork.quiz:AddQuestion("QuizOption5", 2, "QuizAnswerCollectingItems", "QuizAnswerDevelopingChar");
 Clockwork.quiz:AddQuestion("QuizOption6", 2, "QuizAnswerRealLife", "QuizAnswerHalfLife2");
+Clockwork.quiz:AddQuestion("Do you understand that if you are found abusing the built-in model changer, such as granting yourself clothing you do not have access to, you will be banned?", 1, "Yes.", "No");
 
 Clockwork.flag:Add("v", "Light Blackmarket", "Access to light blackmarket goods.");
 Clockwork.flag:Add("V", "Heavy Blackmarket", "Access to heavy blackmarket goods.");

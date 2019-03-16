@@ -60,3 +60,9 @@ function playerMeta:HasUnionCard(bAllowCitizens)
 		return false;
 	end;
 end;
+
+function PLUGIN:PlayerCanUseDoor(player, door)
+	if (player:GetSharedVar("tied") == 0 and player:HasItemByID("union_card")) then
+		return true;
+	end;
+end;
