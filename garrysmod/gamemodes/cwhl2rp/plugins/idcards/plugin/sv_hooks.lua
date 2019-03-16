@@ -5,6 +5,12 @@ local Clockwork = Clockwork;
 local table = table;
 local pairs = pairs;
 
+function PLUGIN:PlayerCanUseDoor(player, door)
+	if (player:GetSharedVar("IsTied") == 0 and player:HasItemByID("union_card")) then
+		return true;
+	end;
+end;
+
 function PLUGIN:PostPlayerSpawn(player, lightSpawn, changeClass, firstSpawn)
 	if (firstSpawn) then
 		if (Clockwork.player:GetFactionTable(player).giveCard and !player:GetCharacterData("CIDCard")) then
