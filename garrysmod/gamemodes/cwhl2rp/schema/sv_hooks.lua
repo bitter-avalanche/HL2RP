@@ -222,6 +222,16 @@ function Schema:GetPlayerDefaultInventory(player, character, inventory)
 		Clockwork.inventory:AddInstance(
 			inventory, Clockwork.item:CreateInstance("handheld_radio")
 		);
+		Clockwork.inventory:AddInstance(
+			inventory, Clockwork.item:CreateInstance("union_card")
+		);
+	elseif (character.faction == FACTION_MINISTRY) then
+		Clockwork.inventory:AddInstance(
+			inventory, Clockwork.item:CreateInstance("handheld_radio")
+		);
+		Clockwork.inventory:AddInstance(
+			inventory, Clockwork.item:CreateInstance("union_card")
+		);
 	elseif (character.faction == FACTION_MPF) then
 		Clockwork.inventory:AddInstance(
 			inventory, Clockwork.item:CreateInstance("handheld_radio")
@@ -242,9 +252,20 @@ function Schema:GetPlayerDefaultInventory(player, character, inventory)
 		Clockwork.inventory:AddInstance(
 			inventory, Clockwork.item:CreateInstance("ammo_ar2")
 		);
+	elseif (character.faction == FACTION_UUSCI) then
+		Clockwork.inventory:AddInstance(
+			inventory, Clockwork.item:CreateInstance("union_card")
+		);
+	elseif (character.faction == FACTION_CWU) then
+		Clockwork.inventory:AddInstance(
+			inventory, Clockwork.item:CreateInstance("cwu_card")
+		);
 	else
 		Clockwork.inventory:AddInstance(
 			inventory, Clockwork.item:CreateInstance("suitcase")
+		);
+		Clockwork.inventory:AddInstance(
+			inventory, Clockwork.item:CreateInstance("cid_card")
 		);
 	end;
 end;
