@@ -1,5 +1,5 @@
 --[[
-	© CloudSixteen.com do not share, re-distribute or modify
+	Â© CloudSixteen.com do not share, re-distribute or modify
 	without permission of its author (kurozael@gmail.com).
 --]]
 
