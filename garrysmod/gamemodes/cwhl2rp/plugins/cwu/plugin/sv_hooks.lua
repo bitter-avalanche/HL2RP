@@ -7,7 +7,7 @@ function PLUGIN:ClockworkInitPostEntity()
 
 	if (cwuFaction) then
 		function cwuFaction:OnTransferred(player, faction, name)
-			local itemTable = Clockwork.item:FindByID("Union Card");
+			local itemTable = Clockwork.item:FindByID("CWU Employee Card");
 
 			if (itemTable) then
 				local itemTable = Clockwork.item:CreateInstance(itemTable("uniqueID"));
