@@ -127,6 +127,7 @@ Clockwork.hint:Add("HintMetagaming", "HintHintMetagamingDesc");
 Clockwork.hint:Add("HintPassiveRP", "HintPassiveRPDesc");
 Clockwork.hint:Add("HintDevelopment", "HintDevelopmentDesc");
 Clockwork.hint:Add("HintPowergaming", "HintHintPowergamingDesc");
+Clockwork.hint:Add("The Laws", "Feel abused by Civil Protection? Not to worry. They have a copy of the Laws of the Union. To share."
 
 Clockwork.datastream:Hook("EditObjectives", function(player, data)
 	if (player.editObjectivesAuthorised and type(data) == "string") then
