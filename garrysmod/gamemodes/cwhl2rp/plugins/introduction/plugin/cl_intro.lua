@@ -1,0 +1,14 @@
+local PLUGIN = PLUGIN;
+PLUGIN.text = [[The year is 2019, and Gordon Freeman is dead. Slain by the Combine a year ago during his heroic, although foolish attempts at rising a rebellion in City Seventeen. Truly, who expected him to win, against the Combine and more important, Wallace Breen himself pulling those strings?
+
+The power of the Combine has only increased, the settling and repair of old-world cities has become paramount to spread the population even thinner than it already was. Overcrowding was no longer a problem. People were starting to feel isolated as the years moved on. Cities were formed by the rampantly expanding Combine Empire.
+
+Fast-forward to current day, June 12th - 2019, you are one of the Citizens in City Eight, a newly restored - whereas previously destroyed - city in Japan, still featuring most of its eerie, luminescent billboards, since then being repurposed to feature the pro’s of joining the Combine Civil Authority or the repercussions for facing them head on.
+
+City Eight, ran by City Administrator [name], a sinister, barely-seen [gender], described by those who work with them to be cunning, eerily smart, and twice as scary being, who is not fully considered human. City Eight is ran as a social experiment with the permission of the Universal Union. This experiment is part of the background of the city. Undesirables, even confirmed rebels are not killed. They are instead exiled to a Union-controlled Outlands. No rations, no food, no protection. They are left under the oversight of the Overwatch Units, who do not patrol, and do not engage, rather designating a zone close to Combine buildings as off-limits. The only thing patrolling the Outlands with a certain frequency are the feared Hunters. Should any banned Citizen try to re-enter the City, they are usually killed on sight. Those who don’t, go for a meeting with the City Administrator, simply to never return. The City Administrator - in this city - presides over a powerful group, namely the Ministry. All Ministry officials are appointed by the Universal Union with the recommendation of the City Administrator. The Ministry is - at all times - chaired by the City Administrator, and no one else. While the Ministry does have the authority over the civilian and legislative aspects of their respective branches, it is not up to them to enforce those aspects personally; but rather direct those who can to do it for them.
+
+A dark time is already behind us, but darker times loom ahead… How are you going to make due? What lines will you cross to ensure your own survival, or that of your friends? Will you live in relative peace, but malnourishment in the Combine-controlled outlands, or will you rather choose to co-opt into this new civilization, and live the most luxury life permitted by the Union?
+
+The choice is yours. It’s your life.
+
+]];
