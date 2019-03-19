@@ -6,8 +6,16 @@ Clockwork.kernel:IncludePrefixed("cl_plugin.lua");
 Clockwork.kernel:IncludePrefixed("cl_hooks.lua");
 
 if (SERVER) then
-	Clockwork.config:Add("intro_sound", "music/HL2_song30.mp3", true);
+	Clockwork.config:Add("intro_sound", "nombat/fallout1/a7.mp3", true);
 else
 	Clockwork.config:AddToSystem("Introduction sound", "intro_sound", "The sound to play during the custom introduction.");
 	PLUGIN:WrapText();
+end;
+
+if (CLIENT) then
+    -- Called when the menu's items should be destroyed.
+    function PLUGIN:MenuItemsDestroy(menuItems)
+        menuItems:Destroy("Plugin Center");
+        menuItems:Destroy("Community");
+    end;
 end;

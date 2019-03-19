@@ -10,7 +10,7 @@ function PLUGIN:PerformIntro()
 	local scrW = ScrW();
 
 	if (!self.soundObj) then
-		self.soundObj = CreateSound(Clockwork.Client, Clockwork.config:Get("intro_sound"):Get());
+		self.soundObj = CreateSound(Clockwork.Client, "nombat/fallout1/a7.mp3");
 		self.soundObj:Play();
 
 		self.button = vgui.Create("cwLabelButton");
@@ -19,7 +19,7 @@ function PLUGIN:PerformIntro()
 		self.button:SizeToContents();
 		self.button:SetCallback(function()
 			self.pos = nil;
-			self.ready = false;
+			self.ready = true;
 			self.soundObj:FadeOut(4);
 			self.soundObj = nil;
 			self.button:Remove();
@@ -27,7 +27,7 @@ function PLUGIN:PerformIntro()
 			gui.EnableScreenClicker = EnableScreenClicker;
 			EnableScreenClicker = nil;
 		end);
-		self.button:SetPos(scrW * .9, scrH - 50);
+		self.button:SetPos(scrW * 0.9, scrH - 50);
 		self.button:SetMouseInputEnabled(true);
 
 		gui.EnableScreenClicker(true);
@@ -36,9 +36,11 @@ function PLUGIN:PerformIntro()
 		function gui.EnableScreenClicker() end;
 	end;
 
-	self.pos = self.pos or scrH;
-		draw.DrawText(self.realText, introTextSmallFont, (scrW * .2), self.pos - 1, colorWhite, TEXT_ALIGN_LEFT);
-	self.pos = self.pos - .06;
+	if (self.realText) then
+		self.pos = self.pos or scrH;
+			draw.DrawText(self.realText, introTextSmallFont, (scrW * 0.2), self.pos - 1, colorWhite, TEXT_ALIGN_LEFT);
+		self.pos = self.pos - 0.06;
+	end;
 end;
 
 -- A function to wrap the text.
@@ -48,13 +50,13 @@ function PLUGIN:WrapText()
 	for k, v in pairs(string.Explode(" ", self.text)) do
 		local scrH = ScrH();
 		local scrW = ScrW();
-		local width = 0;
+		local width = 0.1;
 
 		for k2, v2 in pairs(string.Explode("\n", realText)) do
 			width = surface.GetTextSize(v2);
 		end;
 
-		if (width <= (scrW * .6)) then
+		if (width <= (scrW * 0.6)) then
 			if (realText == "") then
 				realText = realText..v;
 			else

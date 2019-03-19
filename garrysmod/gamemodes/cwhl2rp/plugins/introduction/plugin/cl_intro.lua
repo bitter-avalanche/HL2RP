@@ -10,4 +10,5 @@ City Eight, ran by City Administrator [name], a sinister, barely-seen [gender], 
 A dark time is already behind us, but darker times loom ahead… How are you going to make due? What lines will you cross to ensure your own survival, or that of your friends? Will you live in relative peace, but malnourishment in the Combine-controlled outlands, or will you rather choose to co-opt into this new civilization, and live the most luxury life permitted by the Union?
 
 The choice is yours. It’s your life.
+
 ]];
