@@ -7,6 +7,7 @@ ITEM.category = "Utility";
 ITEM.factions = {FACTION_MPF, FACTION_OTA};
 ITEM.business = false;
 ITEM.description = "A lightweight device. It's made of strange materials.";
+ITEM.uniqueID = "eventlogger";
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)
