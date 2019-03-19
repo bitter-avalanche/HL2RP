@@ -1,0 +1,1 @@
+Clockwork.kernel:AddDirectory("materials/hl2rp2/menuitems/");
