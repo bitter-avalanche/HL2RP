@@ -34,9 +34,9 @@ function ITEM:OnUse(player, itemEntity)
 		
 		return false;
 	else
+		Clockwork.player:GiveCash(player, 60, {"CashRationPacket"});
 		
 		player:GiveItem(Clockwork.item:CreateInstance("gstandard_rationbox"), true);
-		player:GiveItem(Clockwork.item:CreateInstance("gstandard_tokenbag"), true);
 		
 		Clockwork.plugin:Call("PlayerUseRation", player);
 	end;

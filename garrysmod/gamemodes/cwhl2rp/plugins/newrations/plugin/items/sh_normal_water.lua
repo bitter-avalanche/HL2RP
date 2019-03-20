@@ -5,17 +5,16 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Union Water Can";
-ITEM.uniqueID = "normal_water";
+ITEM.name = "ItemBreensWater";
+ITEM.uniqueID = "breen_s_water";
 ITEM.cost = 10;
-ITEM.model = "models/props_lunk/popcan01a.mdl";
+ITEM.model = "models/props_junk/popcan01a.mdl";
 ITEM.weight = 0.5;
 ITEM.access = "1";
 ITEM.useText = "Drink";
 ITEM.business = true;
 ITEM.category = "Consumables";
-ITEM.description = "A can of Union Water. Unifies your thoughts, too!";
-ITEM.thirst = 15;
+ITEM.description = "ItemBreensWaterDesc";
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)
