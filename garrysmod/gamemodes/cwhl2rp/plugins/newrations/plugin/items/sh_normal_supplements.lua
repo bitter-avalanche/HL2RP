@@ -5,13 +5,14 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "ItemCitizenSupplements";
-ITEM.uniqueID = "citizen_supplements";
-ITEM.model = "models/props_lab/jar01b.mdl";
+ITEM.name = "Standard Tier Supplement Powder";
+ITEM.uniqueID = "normal_supplements";
+ITEM.model = "models/foodnhouseholdaaaaa/combirationb.mdl";
 ITEM.weight = 0.6;
 ITEM.useText = "Eat";
 ITEM.category = "Consumables";
-ITEM.description = "ItemCitizenSupplementsDesc";
+ITEM.description = "A lumpy bag with a powdery substance. Smells awful, and probably won't taste much better.";
+ITEM.hunger = 15;
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)
