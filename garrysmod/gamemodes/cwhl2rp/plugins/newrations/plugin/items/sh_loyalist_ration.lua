@@ -5,12 +5,12 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Standard Tier Ration Box";
-ITEM.uniqueID = "gstandard_rationbox";
-ITEM.model = "models/pg_plops/pg_food/pg_tortellinar.mdl";
+ITEM.name = "Loyalist Grade Ration Unit";
+ITEM.uniqueID = "gloyalist_ration";
+ITEM.model = "models/weapons/w_packatl.mdl";
 ITEM.weight = 2;
 ITEM.useText = "Open";
-ITEM.description = "A white box. What have they given you this time?.";
+ITEM.description = "A Loyalist Tier ration unit. Now in a swanky red packaging.";
 
 -- Called when a player attempts to pick up the item.
 function ITEM:CanPickup(player, quickUse, itemEntity)
@@ -35,8 +35,10 @@ function ITEM:OnUse(player, itemEntity)
 		return false;
 	else
 		
-		player:GiveItem(Clockwork.item:CreateInstance("normal_supplements"), true);
-		player:GiveItem(Clockwork.item:CreateInstance("normal_water"), true);
+		player:GiveItem(Clockwork.item:CreateInstance("gloyalist_rationbox"), true);
+		player:GiveItem(Clockwork.item:CreateInstance("gloyalist_tokenbag"), true);
+		
+		Clockwork.plugin:Call("PlayerUseRation", player);
 	end;
 end;
 

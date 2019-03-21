@@ -8,33 +8,45 @@ Housing: ?
 Additional Info:
 - None]],
     loyaltyLevels = {
-        [-15] = {
-            name = "ANTI-CITIZEN",
-            color = Color(255, 0, 0)
+        [-30] = {
+            name = "UNDESIRABLE - NO RATION!",
+            color = Color(155, 13, 13)
+        },
+        [-20] = {
+            name = "ANTI-CITIZEN - MINIMAL RATION TIER.",
+            color = Color(198, 13, 13)
         },
         [-10] = {
-            name = "MALIGNANT",
-            color = Color(255, 128, 0)
-        },
-        [5] = {
-            name = "RED",
+            name = "DISREPUTABLE - MINIMAL RATION TIER.",
             color = Color(255, 0, 0)
         },
-        [20] = {
-            name = "BLUE",
-            color = Color(0, 128, 255)
-        },
-        [50] = {
-            name = "GREEN",
-            color = Color(0, 255, 0)
-        },
-        [75] = {
-            name = "WHITE",
-            color = Color(128, 128, 128)
-        },
-        [100] = {
-            name = "BLACK",
+        [0] = {
+            name = "CITIZEN - NORMAL GRADE RATION UNIT.",
             color = Color(0, 0, 0)
+        },
+        [5] = {
+            name = "HELPFUL CITIZEN - NORMAL GRADE RATION UNIT.",
+            color = Color(133, 170, 99)
+        },
+        [10] = {
+            name = "JUNIOR LOYALIST - NORMAL GRADE RATION UNIT.",
+            color = Color(87, 135, 44)
+        },
+        [20] = {
+            name = "LOYALIST - LOYALIST GRADE RATION UNIT.",
+            color = Color(60, 104, 20)
+        },
+        [40] = {
+            name = "SENIOR LOYALIST - LOYALIST GRADE RATION UNIT.",
+            color = Color(48, 188, 193)
+        },
+        [80] = {
+            name = "SUPPORTIVE LOYALIST - PRIORITY GRADE RATION UNIT.",
+            color = Color(36, 148, 153)
+        },
+        [120] = {
+            name = "SENIOR SUPPORTIVE LOYALIST - PRIORITY GRADE RATION UNIT.",
+            color = Color(23, 101, 104)
         }
     }
 };

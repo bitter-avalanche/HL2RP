@@ -34,7 +34,7 @@ function ITEM:OnUse(player, itemEntity)
 		
 		return false;
 	else
-		Clockwork.player:GiveCash(player, 20, {"CashRationPacket"});
+		Clockwork.player:GiveCash(player, 15, {"CashRationPacket"});
 	end;
 end;
 
