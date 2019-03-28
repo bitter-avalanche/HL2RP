@@ -7,6 +7,9 @@ local ITEM = Clockwork.item:New();
 
 ITEM.name = "Minimal Tier Supplement Powder";
 ITEM.uniqueID = "minimal_supplements";
+ITEM.business = true;
+ITEM.cost = 6;
+ITEM.access = "1";
 ITEM.model = "models/gibs/props_canteen/vm_sneckol.mdl";
 ITEM.weight = 0.6;
 ITEM.useText = "Eat";

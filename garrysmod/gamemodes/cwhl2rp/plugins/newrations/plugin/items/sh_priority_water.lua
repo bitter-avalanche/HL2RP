@@ -7,7 +7,7 @@ local ITEM = Clockwork.item:New();
 
 ITEM.name = "Sparkling Union Water Can";
 ITEM.uniqueID = "priority_water";
-ITEM.cost = 15;
+ITEM.cost = 20;
 ITEM.model = "models/props_lunk/popcan01a.mdl";
 ITEM.weight = 0.5;
 ITEM.access = "1";

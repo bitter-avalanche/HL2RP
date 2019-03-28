@@ -7,7 +7,7 @@ local ITEM = Clockwork.item:New();
 
 ITEM.name = "Peach Flavoured Union Water Can";
 ITEM.uniqueID = "loyalist_water";
-ITEM.cost = 10;
+ITEM.cost = 12;
 ITEM.model = "models/props_lunk/popcan01a.mdl";
 ITEM.weight = 0.5;
 ITEM.access = "1";

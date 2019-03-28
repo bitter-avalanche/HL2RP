@@ -13,6 +13,9 @@ ITEM.useText = "Eat";
 ITEM.category = "Consumables";
 ITEM.description = "A lumpy bag with a powdery substance. Smells awful, and probably won't taste much better.";
 ITEM.hunger = 15;
+ITEM.business = true;
+ITEM.cost = 24;
+ITEM.access = "1";
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)
