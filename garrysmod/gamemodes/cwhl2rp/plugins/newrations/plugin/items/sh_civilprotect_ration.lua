@@ -29,6 +29,18 @@ function ITEM:OnUse(player, itemEntity)
 		Clockwork.player:Notify(player, {"YouCannotOpenRation"});
 		
 		return false;
+	elseif (player:GetFaction() == FACTION_CITIZEN) then
+		Clockwork.player:Notify(player, {"YouCannotOpenRation"});
+		
+		return false;
+	elseif (player:GetFaction() == FACTION_UUSCI) then
+		Clockwork.player:Notify(player, {"YouCannotOpenRation"});
+		
+		return false;
+	elseif (player:GetFaction() == FACTION_CWU) then
+		Clockwork.player:Notify(player, {"YouCannotOpenRation"});
+		
+		return false;
 	else
 		
 		player:GiveItem(Clockwork.item:CreateInstance("gcp_rationbox"), true);
