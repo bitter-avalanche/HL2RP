@@ -1,7 +1,6 @@
 --[[ 
 	© CloudSixteen.com do not share, re-distribute or modify
 	without permission of its author (kurozael@gmail.com).
-
 	Clockwork was created by Conna Wiles (also known as kurozael.)
 	http://cloudsixteen.com/license/clockwork.html
 --]]
@@ -107,7 +106,6 @@ end;
 --[[
 	This is a hack to allow us to call plugin hooks based
 	on default GMod hooks that are called.
-
 	It modifies the hook.Call funtion to call hooks inside Clockwork plugins
 	as well as hooks that are added normally with hook.Add.
 --]]
@@ -911,6 +909,12 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork:PlayerCanTakeFromStorage(player, storageTable, itemTable)
+	if (itemTable.cwPropertyTab and cwEntity:BelongsToAnotherCharacter(player, itemTable)) then
+		cwPly:Notify(player, "You cannot take an item you stored on another character!");
+		
+		return false;
+	end;
+
 	return true;
 end;
 
@@ -923,6 +927,11 @@ end;
 	@returns {Unknown}
 --]]
 function Clockwork:PlayerGiveToStorage(player, storageTable, itemTable)
+	itemTable.cwPropertyTab = itemTable.cwPropertyTab or {
+		key = player:GetCharacterKey(),
+		uniqueID = player:UniqueID()
+	};
+	
 	if (player:IsWearingItem(itemTable)) then
 		player:RemoveClothes();
 	end;
@@ -937,7 +946,9 @@ end;
 	@details Called when a player has taken an item to storage.
 	@returns {Unknown}
 --]]
-function Clockwork:PlayerTakeFromStorage(player, storageTable, itemTable) end;
+function Clockwork:PlayerTakeFromStorage(player, storageTable, itemTable)
+	itemTable.cwPropertyTab = nil;
+end;
 
 --[[
 	@codebase Server
@@ -3655,10 +3666,14 @@ function Clockwork:EntityHandleMenuOption(player, entity, option, arguments)
 				
 				if (quickUse) then
 					itemTable = player:GiveItem(itemTable, true);
+
+					Clockwork.item:AddItemEntity(entity, itemTable);
 					
 					if (!cwPly:InventoryAction(player, itemTable, "use")) then
 						player:TakeItem(itemTable, true);
 						
+						Clockwork.item:AddItemEntity(entity, entity.cwItemTable);
+
 						didPickupItem = false;
 					else
 						player:FakePickup(entity);
@@ -4165,26 +4180,10 @@ function Clockwork:PlayerCharacterInitialized(player)
 	
 	cwDatastream:Start(player, "CharacterInit", player:GetCharacterKey());
 
-	local faction = cwFaction:FindByID(player:GetFaction());
-	local spawnRank = cwFaction:GetDefaultRank(player:GetFaction()) or cwFaction:GetLowestRank(player:GetFaction());
-	
-	player:SetFactionRank(player:GetFactionRank() or spawnRank);
-	
-	if (string.find(player:Name(), "SCN")) then
-		player:SetFactionRank("SCN");
-	end;
-	
-	local rankName, rankTable = player:GetFactionRank();
-	
-	if (rankTable) then
-		if (rankTable.class and cwClass:GetAll()[rankTable.class]) then
+	local rank, rankTable = Clockwork.player:GetFactionRank(player);
 
-			cwClass:Set(player, rankTable.class);
-		end;
-		
-		if (rankTable.model) then
-			player:SetModel(rankTable.model);
-		end;
+	if (rankTable and rankTable.class and cwClass:GetAll()[rankTable.class]) then
+		cwClass:Set(player, rankTable.class);
 	end;
 end;
 

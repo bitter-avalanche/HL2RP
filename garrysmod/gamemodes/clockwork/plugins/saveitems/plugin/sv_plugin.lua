@@ -1,7 +1,6 @@
 --[[
 	© CloudSixteen.com do not share, re-distribute or modify
 	without permission of its author (kurozael@gmail.com).
-
 	Clockwork was created by Conna Wiles (also known as kurozael.)
 	http://cloudsixteen.com/license/clockwork.html
 --]]
@@ -66,6 +65,8 @@ function cwSaveItems:LoadItems()
 				{key = v.key, uniqueID = v.uniqueID}, itemTable, v.position, v.angles
 			);
 			
+			entity.cwInventory = Clockwork.inventory:ToLoadable(v.inventory or {});
+
 			if (IsValid(entity) and !v.isMoveable) then
 				local physicsObject = entity:GetPhysicsObject();
 				
@@ -99,7 +100,8 @@ function cwSaveItems:SaveItems()
 				angles = v:GetAngles(),
 				uniqueID = Clockwork.entity:QueryProperty(v, "uniqueID"),
 				position = v:GetPos(),
-				isMoveable = bMoveable
+				isMoveable = bMoveable,
+				inventory = Clockwork.inventory:ToSaveable(v.cwInventory or {})
 			};
 		end;
 	end;
