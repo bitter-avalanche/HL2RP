@@ -5,19 +5,19 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Absinthe - Black'd Tea";
-ITEM.uniqueID = "food_absinthe";
-ITEM.cost = 75;
-ITEM.model = "models/bioshockinfinite/ebsinthebottle.mdl";
-ITEM.weight = 0.5;
+ITEM.name = "Gin";
+ITEM.uniqueID = "food_gin";
+ITEM.cost = 50;
+ITEM.model = "models/bioshockinfinite/jin_bottle.mdl";
+ITEM.weight = 2.5;
 ITEM.access = "1";
 ITEM.useText = "Drink";
 ITEM.business = true;
 ITEM.category = "Consumables";
-ITEM.description = "One of the most alcohol holding drinks there is known to current existence. Drinking this is ill-advised.";
-ITEM.sleep = 20;
-ITEM.thirst = -10;
-ITEM.hunger = -10;
+ITEM.description = "An old-school drink containing a load of alcohol in it. This will most likely make you drunk. Rare to come by. Usually to help people sleep.";
+ITEM.sleep = 15;
+ITEM.thirst = -5;
+ITEM.hunger = -5;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

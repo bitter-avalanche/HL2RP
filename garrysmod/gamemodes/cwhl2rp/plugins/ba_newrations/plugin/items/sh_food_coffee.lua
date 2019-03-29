@@ -5,25 +5,24 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Sparkling Union Water Can";
-ITEM.uniqueID = "priority_water";
-ITEM.cost = 20;
-ITEM.model = "models/props_lunk/popcan01a.mdl";
-ITEM.weight = 0.5;
+ITEM.name = "Coffee Can";
+ITEM.uniqueID = "food_coffee";
+ITEM.cost = 15;
+ITEM.model = "models/bioshockinfinite/xoffee_mug_closed.mdl";
+ITEM.weight = 0.7;
 ITEM.access = "1";
 ITEM.useText = "Drink";
 ITEM.business = true;
 ITEM.category = "Consumables";
-ITEM.description = "A can of Sparkling Union Water. Unifies your thoughts, too!";
-ITEM.thirst = 15;
+ITEM.description = "Vacuum sealed, cold, far too bitter and you can still taste coffee grounds. But coffee is coffee, right?";
+ITEM.sleep = 15;
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)
 	player:SetCharacterData("Stamina", 100);
-	player:SetHealth(math.Clamp(player:Health() + 4, 0, player:GetMaxHealth()));
 	
-	player:BoostAttribute(self.name, ATB_AGILITY, 5, 120);
-	player:BoostAttribute(self.name, ATB_STAMINA, 5, 120);
+	player:BoostAttribute(self.name, ATB_AGILITY, 1, 120);
+	player:BoostAttribute(self.name, ATB_STAMINA, 1, 120);
 end;
 
 -- Called when a player drops the item.

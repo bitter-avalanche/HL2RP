@@ -5,27 +5,19 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Beer";
-ITEM.uniqueID = "food_beer";
-ITEM.cost = 15;
-ITEM.model = "models/bioshockinfinite/hext_bottle_lager.mdl";
-ITEM.weight = 0.5;
+ITEM.name = "Absinthe - Black'd Tea";
+ITEM.uniqueID = "food_absinthe";
+ITEM.cost = 75;
+ITEM.model = "models/bioshockinfinite/ebsinthebottle.mdl";
+ITEM.weight = 2.5;
 ITEM.access = "1";
 ITEM.useText = "Drink";
 ITEM.business = true;
 ITEM.category = "Consumables";
-ITEM.description = "Vacuum sealed bottle of beer. How are you going to get the cap off?";
-ITEM.sleep = 5;
-ITEM.thirst = -5;
-ITEM.hunger = -5;
-
--- Called when a player uses the item.
-function ITEM:OnUse(player, itemEntity)
-	player:SetCharacterData("Stamina", 100);
-	
-	player:BoostAttribute(self.name, ATB_AGILITY, 1, 120);
-	player:BoostAttribute(self.name, ATB_STAMINA, 1, 120);
-end;
+ITEM.description = "One of the most alcohol holding drinks there is known to current existence. Drinking this is ill-advised.";
+ITEM.sleep = 20;
+ITEM.thirst = -10;
+ITEM.hunger = -10;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

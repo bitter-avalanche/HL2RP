@@ -5,18 +5,18 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Jar of Pickles";
-ITEM.uniqueID = "food_pickles";
-ITEM.model = "models/bioshockinfinite/dickle_jar.mdl";
-ITEM.weight = 1;
+ITEM.name = "Apple";
+ITEM.uniqueID = "food_apple";
+ITEM.model = "models/bioshockinfinite/hext_apple.mdl";
+ITEM.weight = 0.3;
 ITEM.useText = "Eat";
 ITEM.category = "Consumables";
-ITEM.description = "Ew! You're not thinking of eating this, right..?";
+ITEM.description = "A juicy, red apple. Might save the day.";
 ITEM.business = true;
-ITEM.cost = 20;
+ITEM.cost = 5;
 ITEM.access = "1";
-ITEM.hunger = 15;
-ITEM.thirst = 15;
+ITEM.hunger = 5;
+ITEM.thirst = 5;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

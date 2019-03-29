@@ -8,7 +8,7 @@ local ITEM = Clockwork.item:New();
 ITEM.name = "Loyalist Tier Ration Box";
 ITEM.uniqueID = "gpriority_rationbox";
 ITEM.model = "models/pg_plops/pg_food/pg_tortellinat.mdl";
-ITEM.weight = 2;
+ITEM.weight = 2.6;
 ITEM.useText = "Open";
 ITEM.description = "A white and yellow box. What have they given you this time?";
 

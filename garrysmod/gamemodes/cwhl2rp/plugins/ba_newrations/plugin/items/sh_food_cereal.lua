@@ -5,18 +5,18 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Apple";
-ITEM.uniqueID = "food_apple";
-ITEM.model = "models/bioshockinfinite/hext_apple.mdl";
-ITEM.weight = 1;
+ITEM.name = "Box of Cereal";
+ITEM.uniqueID = "food_cereal";
+ITEM.model = "models/bioshockinfinite/hext_cereal_box_cornflakes.mdl";
+ITEM.weight = 1.5;
 ITEM.useText = "Eat";
 ITEM.category = "Consumables";
-ITEM.description = "A juicy, red apple. Might save the day.";
+ITEM.description = "Bland cornflakes. Definitely not the chipper start of your day you were hoping for.";
 ITEM.business = true;
-ITEM.cost = 5;
+ITEM.cost = 20;
 ITEM.access = "1";
-ITEM.hunger = 5;
-ITEM.thirst = 5;
+ITEM.hunger = 15;
+ITEM.thirst = -15;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

@@ -5,17 +5,19 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Coffee Can";
-ITEM.uniqueID = "food_coffee";
+ITEM.name = "Beer";
+ITEM.uniqueID = "food_beer";
 ITEM.cost = 15;
-ITEM.model = "models/bioshockinfinite/xoffee_mug_closed.mdl";
-ITEM.weight = 0.5;
+ITEM.model = "models/bioshockinfinite/hext_bottle_lager.mdl";
+ITEM.weight = 1.5;
 ITEM.access = "1";
 ITEM.useText = "Drink";
 ITEM.business = true;
 ITEM.category = "Consumables";
-ITEM.description = "Vacuum sealed, cold, far too bitter and you can still taste coffee grounds. But coffee is coffee, right?";
-ITEM.sleep = 15;
+ITEM.description = "Vacuum sealed bottle of beer. How are you going to get the cap off?";
+ITEM.sleep = 5;
+ITEM.thirst = -5;
+ITEM.hunger = -5;
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)

@@ -5,18 +5,18 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Pineapple";
-ITEM.uniqueID = "food_pineapple";
-ITEM.model = "models/bioshockinfinite/hext_pineapple.mdl";
-ITEM.weight = 1;
+ITEM.name = "Orange";
+ITEM.uniqueID = "food_orange";
+ITEM.model = "models/bioshockinfinite/hext_orange.mdl";
+ITEM.weight = 0.3;
 ITEM.useText = "Eat";
 ITEM.category = "Consumables";
-ITEM.description = "A pineapple. Wonder if your old cartoon hero lives here?";
+ITEM.description = "An orange. No, not the color.";
 ITEM.business = true;
-ITEM.cost = 25;
+ITEM.cost = 15;
 ITEM.access = "1";
-ITEM.hunger = 15;
-ITEM.thirst = 15;
+ITEM.hunger = 5;
+ITEM.thirst = 5;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

@@ -5,18 +5,18 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Pear";
-ITEM.uniqueID = "food_pear";
-ITEM.model = "models/bioshockinfinite/hext_pear.mdl";
-ITEM.weight = 1;
+ITEM.name = "Bag of Peanuts";
+ITEM.uniqueID = "food_peanuts";
+ITEM.model = "models/bioshockinfinite/rag_of_peanuts.mdl";
+ITEM.weight = 0.7;
 ITEM.useText = "Eat";
 ITEM.category = "Consumables";
-ITEM.description = "A pear. Seems nondescript enough.";
+ITEM.description = "Peanuts that are way too salty. Pretty much like you when you get beat up again.";
 ITEM.business = true;
-ITEM.cost = 15;
+ITEM.cost = 10;
 ITEM.access = "1";
 ITEM.hunger = 5;
-ITEM.thirst = 5;
+ITEM.thirst = -5;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

@@ -5,18 +5,17 @@
 
 local ITEM = Clockwork.item:New();
 
-ITEM.name = "Box of Cereal";
-ITEM.uniqueID = "food_cereal";
-ITEM.model = "models/bioshockinfinite/hext_cereal_box_cornflakes.mdl";
-ITEM.weight = 1;
+ITEM.name = "Chocolate bar";
+ITEM.uniqueID = "food_chocolate";
+ITEM.model = "models/bioshockinfinite/hext_candy_chocolate.mdl";
+ITEM.weight = 0.6;
 ITEM.useText = "Eat";
 ITEM.category = "Consumables";
-ITEM.description = "Bland cornflakes. Definitely not the chipper start of your day you were hoping for.";
+ITEM.description = "A bar of flavorless chocolate. Still, it's the thought that counts, right?";
 ITEM.business = true;
-ITEM.cost = 20;
+ITEM.cost = 25;
 ITEM.access = "1";
-ITEM.hunger = 15;
-ITEM.thirst = -15;
+ITEM.hunger = 5;
 
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;

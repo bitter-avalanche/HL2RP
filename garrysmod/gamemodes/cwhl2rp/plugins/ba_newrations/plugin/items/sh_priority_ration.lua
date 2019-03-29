@@ -8,7 +8,7 @@ local ITEM = Clockwork.item:New();
 ITEM.name = "Priority Grade Ration Unit";
 ITEM.uniqueID = "gpriority_ration";
 ITEM.model = "models/weapons/w_packatp.mdl";
-ITEM.weight = 2;
+ITEM.weight = 5.6;
 ITEM.useText = "Open";
 ITEM.description = "A Priority Tier ration unit. Vibrant yellow. You feel your eyes hurt by its supremacy.";
 
