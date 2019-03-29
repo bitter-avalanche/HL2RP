@@ -22,6 +22,12 @@ function ITEM:OnUse(player, itemEntity)
 	player:SetHealth(math.Clamp(player:Health() + 10, 0, player:GetMaxHealth()));
 end;
 
+function ITEM:OnUse(player, itemEntity)
+
+	player:BoostAttribute(self.name, ATB_STRENGTH, 3, 3600);
+	player:BoostAttribute(self.name, ATB_ENDURANCE, 3, 3600);
+end;
+
 -- Called when a player drops the item.
 function ITEM:OnDrop(player, position) end;
 
