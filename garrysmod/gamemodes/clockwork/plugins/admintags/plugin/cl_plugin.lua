@@ -3,7 +3,7 @@ local PLUGIN = PLUGIN;
 --Disables ability to see IC and LOOC chat when in ghost mode to prevent metagaming.
 function PLUGIN:ChatBoxAdjustInfo(info)
 	local adminTable = {
-		["operator"] = "[O]", ["admin"] = "[A]", ["superadmin"] = "[SA]"
+		["operator"] = "[OP]", [""] = "[ADM]", ["superadmin"] = "[SEA]"
 	}
 	if (info.class == "looc" or info.class == "ooc") then
 		for k, v in pairs (adminTable) do	
