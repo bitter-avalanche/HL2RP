@@ -11,6 +11,7 @@ FACTION.whitelist = true
 FACTION.material = "halfliferp/factions/mpf"
 FACTION.startChatNoise = "npc/overwatch/radiovoice/on1.wav"; -- the sound to play when a player starts talking
 FACTION.endChatNoise = "npc/overwatch/radiovoice/off4.wav"; -- the sound to play when a player finishes talking
+FACTION.listenChannels = {["mpf_network"] = 1}
 FACTION.models = {
 	female = {nmodels["recruit"]},
 	male = {nmodels["recruit"]}

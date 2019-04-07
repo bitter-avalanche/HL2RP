@@ -11,4 +11,5 @@ local CLASS = Clockwork.class:New("Elite Metropolice");
 	CLASS.maleModel = "models/leet_police2.mdl";
 	CLASS.description = "An elite metropolice unit working as Civil Protection.";
 	CLASS.defaultPhysDesc = "Wearing a metrocop jacket with a radio";
+	CLASS.listenChannels = {["mpf_global"] = 1}
 CLASS_EMP = CLASS:Register();
