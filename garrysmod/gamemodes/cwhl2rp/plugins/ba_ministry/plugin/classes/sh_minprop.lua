@@ -3,7 +3,7 @@
 	without permission of its author (kurozael@gmail.com).
 --]]
 
-local CLASS = Clockwork.class:New("Minister of Propaganda");
+local CLASS = Clockwork.class:New("Minister of Civil Communication");
 	CLASS.color = Color(106, 156, 237, 255);
 	CLASS.wages = 25;
 	CLASS.factions = {FACTION_MINISTRY};
