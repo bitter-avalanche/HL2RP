@@ -28,7 +28,7 @@ FACTION.models = {
 		"models/scp/citizens/group84/female_38.mdl",
 		"models/scp/citizens/group84/female_41.mdl",
 		"models/scp/citizens/group84/female_43.mdl"
-		}
+		},
 	male = {
 		"models/scp/citizens/group84/male_01.mdl",
 		"models/scp/citizens/group84/male_02.mdl",
