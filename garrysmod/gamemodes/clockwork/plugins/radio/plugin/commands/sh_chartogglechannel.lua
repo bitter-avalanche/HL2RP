@@ -4,7 +4,7 @@ local PLUGIN = PLUGIN;
 local COMMAND = Clockwork.command:New("CharToggleChannel");
 COMMAND.tip = "Subcribes the player to a radio channel.";
 COMMAND.text = "<string Name> <string ChannelName> [int DefaultChannelNumber|Default: 1]";
-COMMAND.access = "a";
+COMMAND.access = "o";
 COMMAND.arguments = 2;
 COMMAND.optionalArguments = 1;
 
